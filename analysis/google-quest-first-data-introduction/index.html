@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/index.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_25_0.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_32_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_35_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_36_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_39_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_51_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_53_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_55_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_57_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_62_1.png">
+<meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_67_1.png">
+<meta property="og:updated_time" content="2020-02-03T22:11:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
+<meta name="twitter:image" content="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="https://github.com/shuziP" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-文章essays">
+
+    <a href="/" rel="section">文章essays</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis menu-item-active">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/analysis/">ANALYSIS</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>GOOGLE-QUEST-FIRST-DATA-INTRODUCTION</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <h1 id="Google-QUEST-Q-amp-A-Labeling"><a href="#Google-QUEST-Q-amp-A-Labeling" class="headerlink" title="Google QUEST Q&amp;A Labeling"></a>Google QUEST Q&amp;A Labeling</h1><p><strong>Improving automated understanding of complex question answer content</strong></p>
+<blockquote>
+<p>Computers are really good at answering questions with single, verifiable answers. But, humans are often still better at answering questions about opinions, recommendations, or personal experiences.<br>…<br>In this competition, you’re challenged to use this new dataset to build predictive algorithms for different subjective aspects of question-answering.</p>
+</blockquote>
+<p><img src="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png" alt></p>
+<p>The competition is <strong>Notebook-only competition</strong>. Your Notebook will re-run automatically against an unseen test set.</p>
+<p>This competition data is small, only made of 6079 rows of train dataset.<br><br>So I think this competition is <strong>easy for beginners to participate</strong> in terms of computational resource (unless you use BERT or any other heavy models to get good score), compared to the past competition hosted by Google like Open Image Challenges which requires a lot of GPU resources to train the model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm_notebook <span class="keyword">as</span> tqdm</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np <span class="comment"># linear algebra</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> IPython.core.display <span class="keyword">import</span> display, HTML</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- plotly ---</span></span><br><span class="line"><span class="keyword">from</span> plotly <span class="keyword">import</span> tools, subplots</span><br><span class="line"><span class="keyword">import</span> plotly.offline <span class="keyword">as</span> py</span><br><span class="line">py.init_notebook_mode(connected=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">import</span> plotly.graph_objs <span class="keyword">as</span> go</span><br><span class="line"><span class="keyword">import</span> plotly.express <span class="keyword">as</span> px</span><br><span class="line"><span class="keyword">import</span> plotly.figure_factory <span class="keyword">as</span> ff</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- models ---</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">import</span> catboost <span class="keyword">as</span> cb</span><br></pre></td></tr></table></figure>
+
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax) {MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-latest.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This Python 3 environment comes with many helpful analytics libraries installed</span></span><br><span class="line"><span class="comment"># It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python</span></span><br><span class="line"><span class="comment"># For example, here's several helpful packages to load in </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np <span class="comment"># linear algebra</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Input data files are available in the "../input/" directory.</span></span><br><span class="line"><span class="comment"># For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">for</span> dirname, _, filenames <span class="keyword">in</span> os.walk(<span class="string">'/kaggle/input'</span>):</span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</span><br><span class="line">        print(os.path.join(dirname, filename))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Any results you write to the current directory are saved as output.</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/kaggle/input/google-quest-challenge/test.csv
+/kaggle/input/google-quest-challenge/train.csv
+/kaggle/input/google-quest-challenge/sample_submission.csv</code></pre><h1 id="Data-loading-and-data-explanation"><a href="#Data-loading-and-data-explanation" class="headerlink" title="Data loading and data explanation"></a>Data loading and data explanation</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%%time</span><br><span class="line">datadir = Path(<span class="string">'/kaggle/input/google-quest-challenge'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read in the data CSV files</span></span><br><span class="line">train = pd.read_csv(datadir/<span class="string">'train.csv'</span>)</span><br><span class="line">test = pd.read_csv(datadir/<span class="string">'test.csv'</span>)</span><br><span class="line">sample_submission = pd.read_csv(datadir/<span class="string">'sample_submission.csv'</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>CPU times: user 188 ms, sys: 68 ms, total: 256 ms
+Wall time: 260 ms</code></pre><p>Let’s check each data size.</p>
+<p>Train and test data consists of 6079 rows and 476 rows respectively.<br><br>We have 30 different target labels to predict.<br><br>Rest 10 columns are given as feature.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'train'</span>, train.shape)</span><br><span class="line">print(<span class="string">'test'</span>, test.shape)</span><br><span class="line">print(<span class="string">'sample_submission'</span>, sample_submission.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>train (6079, 41)
+test (476, 11)
+sample_submission (476, 31)</code></pre><h2 id="target-labels"><a href="#target-labels" class="headerlink" title="target labels"></a>target labels</h2><p>Let’s check target labels at first.</p>
+<p>Each row is identified by question id: <code>qa_id</code>, and other 30 columns are target labels.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample_submission.head()</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>qa_id</th>
+      <th>question_asker_intent_understanding</th>
+      <th>question_body_critical</th>
+      <th>question_conversational</th>
+      <th>question_expect_short_answer</th>
+      <th>question_fact_seeking</th>
+      <th>question_has_commonly_accepted_answer</th>
+      <th>question_interestingness_others</th>
+      <th>question_interestingness_self</th>
+      <th>question_multi_intent</th>
+      <th>...</th>
+      <th>question_well_written</th>
+      <th>answer_helpful</th>
+      <th>answer_level_of_information</th>
+      <th>answer_plausible</th>
+      <th>answer_relevance</th>
+      <th>answer_satisfaction</th>
+      <th>answer_type_instructions</th>
+      <th>answer_type_procedure</th>
+      <th>answer_type_reason_explanation</th>
+      <th>answer_well_written</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>...</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+      <td>0.00308</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>...</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+      <td>0.00448</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>70</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>...</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+      <td>0.00673</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>132</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>...</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+      <td>0.01401</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>200</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>...</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+      <td>0.02074</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample_submission.columns</span><br></pre></td></tr></table></figure>
+
+<pre><code>Index([&apos;qa_id&apos;, &apos;question_asker_intent_understanding&apos;,
+       &apos;question_body_critical&apos;, &apos;question_conversational&apos;,
+       &apos;question_expect_short_answer&apos;, &apos;question_fact_seeking&apos;,
+       &apos;question_has_commonly_accepted_answer&apos;,
+       &apos;question_interestingness_others&apos;, &apos;question_interestingness_self&apos;,
+       &apos;question_multi_intent&apos;, &apos;question_not_really_a_question&apos;,
+       &apos;question_opinion_seeking&apos;, &apos;question_type_choice&apos;,
+       &apos;question_type_compare&apos;, &apos;question_type_consequence&apos;,
+       &apos;question_type_definition&apos;, &apos;question_type_entity&apos;,
+       &apos;question_type_instructions&apos;, &apos;question_type_procedure&apos;,
+       &apos;question_type_reason_explanation&apos;, &apos;question_type_spelling&apos;,
+       &apos;question_well_written&apos;, &apos;answer_helpful&apos;,
+       &apos;answer_level_of_information&apos;, &apos;answer_plausible&apos;, &apos;answer_relevance&apos;,
+       &apos;answer_satisfaction&apos;, &apos;answer_type_instructions&apos;,
+       &apos;answer_type_procedure&apos;, &apos;answer_type_reason_explanation&apos;,
+       &apos;answer_well_written&apos;],
+      dtype=&apos;object&apos;)</code></pre><p>30 target labels consist of 21 question related labels and 9 answer related labels.</p>
+<p>NOTE: the labels are given in the continuous range from [0, 1]. NOT binary value.</p>
+<blockquote>
+<p>This is not a binary prediction challenge. Target labels are aggregated from multiple raters, and can have continuous values in the range [0,1]. Therefore, predictions must also be in that range.</p>
+</blockquote>
+<h2 id="feature-columns"><a href="#feature-columns" class="headerlink" title="feature columns"></a>feature columns</h2><p>Let’s check feature columns one by one.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">feature_columns = [col <span class="keyword">for</span> col <span class="keyword">in</span> train.columns <span class="keyword">if</span> col <span class="keyword">not</span> <span class="keyword">in</span> sample_submission.columns]</span><br><span class="line">print(<span class="string">'Feature columns: '</span>, feature_columns)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Feature columns:  [&apos;question_title&apos;, &apos;question_body&apos;, &apos;question_user_name&apos;, &apos;question_user_page&apos;, &apos;answer&apos;, &apos;answer_user_name&apos;, &apos;answer_user_page&apos;, &apos;url&apos;, &apos;category&apos;, &apos;host&apos;]</code></pre><p>Each row contains question and answer information together with the original Q&amp;A page URL of the StackExchange properties.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train[feature_columns].head()</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>question_title</th>
+      <th>question_body</th>
+      <th>question_user_name</th>
+      <th>question_user_page</th>
+      <th>answer</th>
+      <th>answer_user_name</th>
+      <th>answer_user_page</th>
+      <th>url</th>
+      <th>category</th>
+      <th>host</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>What am I losing when using extension tubes in...</td>
+      <td>After playing around with macro photography on...</td>
+      <td>ysap</td>
+      <td>https://photo.stackexchange.com/users/1024</td>
+      <td>I just got extension tubes, so here's the skin...</td>
+      <td>rfusca</td>
+      <td>https://photo.stackexchange.com/users/1917</td>
+      <td>http://photo.stackexchange.com/questions/9169/...</td>
+      <td>LIFE_ARTS</td>
+      <td>photo.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>What is the distinction between a city and a s...</td>
+      <td>I am trying to understand what kinds of places...</td>
+      <td>russellpierce</td>
+      <td>https://rpg.stackexchange.com/users/8774</td>
+      <td>It might be helpful to look into the definitio...</td>
+      <td>Erik Schmidt</td>
+      <td>https://rpg.stackexchange.com/users/1871</td>
+      <td>http://rpg.stackexchange.com/questions/47820/w...</td>
+      <td>CULTURE</td>
+      <td>rpg.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Maximum protusion length for through-hole comp...</td>
+      <td>I'm working on a PCB that has through-hole com...</td>
+      <td>Joe Baker</td>
+      <td>https://electronics.stackexchange.com/users/10157</td>
+      <td>Do you even need grooves?  We make several pro...</td>
+      <td>Dwayne Reid</td>
+      <td>https://electronics.stackexchange.com/users/64754</td>
+      <td>http://electronics.stackexchange.com/questions...</td>
+      <td>SCIENCE</td>
+      <td>electronics.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Can an affidavit be used in Beit Din?</td>
+      <td>An affidavit, from what i understand, is basic...</td>
+      <td>Scimonster</td>
+      <td>https://judaism.stackexchange.com/users/5151</td>
+      <td>Sending an "affidavit" it is a dispute between...</td>
+      <td>Y     e     z</td>
+      <td>https://judaism.stackexchange.com/users/4794</td>
+      <td>http://judaism.stackexchange.com/questions/551...</td>
+      <td>CULTURE</td>
+      <td>judaism.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>How do you make a binary image in Photoshop?</td>
+      <td>I am trying to make a binary image. I want mor...</td>
+      <td>leigero</td>
+      <td>https://graphicdesign.stackexchange.com/users/...</td>
+      <td>Check out Image Trace in Adobe Illustrator. \n...</td>
+      <td>q2ra</td>
+      <td>https://graphicdesign.stackexchange.com/users/...</td>
+      <td>http://graphicdesign.stackexchange.com/questio...</td>
+      <td>LIFE_ARTS</td>
+      <td>graphicdesign.stackexchange.com</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>Let’s focus on the first row of the data. You can access original page mentioned in the <code>url</code> column.</p>
+<ul>
+<li><a href="https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens" target="_blank" rel="noopener">https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens</a></li>
+</ul>
+<p> Only the question contains “title” (<code>question_title</code>), and we have <code>question_body</code> and <code>answer</code> which is given by sentences.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train0 = train.iloc[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">'URL           : '</span>, train0[<span class="string">'url'</span>])</span><br><span class="line">print(<span class="string">'question_title: '</span>, train0[<span class="string">'question_title'</span>])</span><br><span class="line">print(<span class="string">'question_body : '</span>, train0[<span class="string">'question_body'</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>URL           :  http://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens
+question_title:  What am I losing when using extension tubes instead of a macro lens?
+question_body :  After playing around with macro photography on-the-cheap (read: reversed lens, rev. lens mounted on a straight lens, passive extension tubes), I would like to get further with this. The problems with the techniques I used is that focus is manual and aperture control is problematic at best. This limited my setup to still subjects (read: dead insects) Now, as spring is approaching, I want to be able to shoot live insects. I believe that for this, autofocus and settable aperture will be of great help.
+
+So, one obvious but expensive option is a macro lens (say, EF 100mm Macro) However, I am not really interested in yet another prime lens. An alternative is the electrical extension tubes.
+
+Except for maximum focusing distance, what am I losing when using tubes (coupled with a fine lens, say EF70-200/2.8) instead of a macro lens?</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'answer        : '</span>, train0[<span class="string">'answer'</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>answer        :  I just got extension tubes, so here&apos;s the skinny.
+
+
+  ...what am I losing when using tubes...?
+
+
+A very considerable amount of light!  Increasing that distance from the end of the lens to the sensor can cut your light several stops.  Combined with the fact that you&apos;ll usually shoot stopped down - expect to need to increase your ISO considerably.
+
+The fact the macro&apos;s are usually considered very very sharp, although I believe that 70-200mm 2.8 is supposed to be quite sharp.
+
+The ultra low distortion typical of many macros.
+
+I wouldn&apos;t worry too much about the bokeh since the DOF will still be quite limited.
+
+Coupled on my 50mm, a full 60mm&apos;ish extension tube results in a DOF of about a couple inches in front of the lens.  On my 70-300, its probably around 2-3 feet in front of the lens to about a foot in front of the lens.</code></pre><p>When you access to the URL, you can understand that multiple answer to the single question is given in the page. But only one answer is sampled in the dataset.<br>Also this answer may not be the most popular answer. We can find the answer of this data in the relatively bottom part of the homepage.</p>
+<p>Other columns are metadata, which shows <strong>question user</strong> property, <strong>answer user</strong> property and <strong>category</strong> of question.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train[[<span class="string">'url'</span>, <span class="string">'question_user_name'</span>, <span class="string">'question_user_page'</span>, <span class="string">'answer_user_name'</span>, <span class="string">'answer_user_page'</span>, <span class="string">'url'</span>, <span class="string">'category'</span>, <span class="string">'host'</span>]]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>url</th>
+      <th>question_user_name</th>
+      <th>question_user_page</th>
+      <th>answer_user_name</th>
+      <th>answer_user_page</th>
+      <th>url</th>
+      <th>category</th>
+      <th>host</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>http://photo.stackexchange.com/questions/9169/...</td>
+      <td>ysap</td>
+      <td>https://photo.stackexchange.com/users/1024</td>
+      <td>rfusca</td>
+      <td>https://photo.stackexchange.com/users/1917</td>
+      <td>http://photo.stackexchange.com/questions/9169/...</td>
+      <td>LIFE_ARTS</td>
+      <td>photo.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>http://rpg.stackexchange.com/questions/47820/w...</td>
+      <td>russellpierce</td>
+      <td>https://rpg.stackexchange.com/users/8774</td>
+      <td>Erik Schmidt</td>
+      <td>https://rpg.stackexchange.com/users/1871</td>
+      <td>http://rpg.stackexchange.com/questions/47820/w...</td>
+      <td>CULTURE</td>
+      <td>rpg.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>http://electronics.stackexchange.com/questions...</td>
+      <td>Joe Baker</td>
+      <td>https://electronics.stackexchange.com/users/10157</td>
+      <td>Dwayne Reid</td>
+      <td>https://electronics.stackexchange.com/users/64754</td>
+      <td>http://electronics.stackexchange.com/questions...</td>
+      <td>SCIENCE</td>
+      <td>electronics.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>http://judaism.stackexchange.com/questions/551...</td>
+      <td>Scimonster</td>
+      <td>https://judaism.stackexchange.com/users/5151</td>
+      <td>Y     e     z</td>
+      <td>https://judaism.stackexchange.com/users/4794</td>
+      <td>http://judaism.stackexchange.com/questions/551...</td>
+      <td>CULTURE</td>
+      <td>judaism.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>http://graphicdesign.stackexchange.com/questio...</td>
+      <td>leigero</td>
+      <td>https://graphicdesign.stackexchange.com/users/...</td>
+      <td>q2ra</td>
+      <td>https://graphicdesign.stackexchange.com/users/...</td>
+      <td>http://graphicdesign.stackexchange.com/questio...</td>
+      <td>LIFE_ARTS</td>
+      <td>graphicdesign.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6074</th>
+      <td>http://bicycles.stackexchange.com/questions/99...</td>
+      <td>sixtyfootersdude</td>
+      <td>https://bicycles.stackexchange.com/users/134</td>
+      <td>Matt Leo</td>
+      <td>https://bicycles.stackexchange.com/users/3340</td>
+      <td>http://bicycles.stackexchange.com/questions/99...</td>
+      <td>CULTURE</td>
+      <td>bicycles.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>6075</th>
+      <td>http://bicycles.stackexchange.com/questions/25...</td>
+      <td>ash</td>
+      <td>https://bicycles.stackexchange.com/users/14519</td>
+      <td>Daniel R Hicks</td>
+      <td>https://bicycles.stackexchange.com/users/1584</td>
+      <td>http://bicycles.stackexchange.com/questions/25...</td>
+      <td>CULTURE</td>
+      <td>bicycles.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>6076</th>
+      <td>http://unix.stackexchange.com/questions/169054...</td>
+      <td>Maneating Koala</td>
+      <td>https://unix.stackexchange.com/users/60445</td>
+      <td>BG Bruno</td>
+      <td>https://unix.stackexchange.com/users/68208</td>
+      <td>http://unix.stackexchange.com/questions/169054...</td>
+      <td>TECHNOLOGY</td>
+      <td>unix.stackexchange.com</td>
+    </tr>
+    <tr>
+      <th>6077</th>
+      <td>http://mathoverflow.net/questions/57337</td>
+      <td>MrB</td>
+      <td>https://mathoverflow.net/users/2189</td>
+      <td>angela</td>
+      <td>https://mathoverflow.net/users/4267</td>
+      <td>http://mathoverflow.net/questions/57337</td>
+      <td>SCIENCE</td>
+      <td>mathoverflow.net</td>
+    </tr>
+    <tr>
+      <th>6078</th>
+      <td>http://diy.stackexchange.com/questions/2701/wh...</td>
+      <td>Doug T.</td>
+      <td>https://diy.stackexchange.com/users/321</td>
+      <td>Scivitri</td>
+      <td>https://diy.stackexchange.com/users/113</td>
+      <td>http://diy.stackexchange.com/questions/2701/wh...</td>
+      <td>LIFE_ARTS</td>
+      <td>diy.stackexchange.com</td>
+    </tr>
+  </tbody>
+</table>
+<p>6079 rows × 8 columns</p>
+</div>
+
+
+
+<h1 id="Exploratory-Data-Analysis"><a href="#Exploratory-Data-Analysis" class="headerlink" title="Exploratory Data Analysis"></a>Exploratory Data Analysis</h1><p>Let’s check each column of the data more carefully.</p>
+<h2 id="target-label-distribution"><a href="#target-label-distribution" class="headerlink" title="target label distribution"></a>target label distribution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">target_cols = [<span class="string">'question_asker_intent_understanding'</span>,</span><br><span class="line">       <span class="string">'question_body_critical'</span>, <span class="string">'question_conversational'</span>,</span><br><span class="line">       <span class="string">'question_expect_short_answer'</span>, <span class="string">'question_fact_seeking'</span>,</span><br><span class="line">       <span class="string">'question_has_commonly_accepted_answer'</span>,</span><br><span class="line">       <span class="string">'question_interestingness_others'</span>, <span class="string">'question_interestingness_self'</span>,</span><br><span class="line">       <span class="string">'question_multi_intent'</span>, <span class="string">'question_not_really_a_question'</span>,</span><br><span class="line">       <span class="string">'question_opinion_seeking'</span>, <span class="string">'question_type_choice'</span>,</span><br><span class="line">       <span class="string">'question_type_compare'</span>, <span class="string">'question_type_consequence'</span>,</span><br><span class="line">       <span class="string">'question_type_definition'</span>, <span class="string">'question_type_entity'</span>,</span><br><span class="line">       <span class="string">'question_type_instructions'</span>, <span class="string">'question_type_procedure'</span>,</span><br><span class="line">       <span class="string">'question_type_reason_explanation'</span>, <span class="string">'question_type_spelling'</span>,</span><br><span class="line">       <span class="string">'question_well_written'</span>, <span class="string">'answer_helpful'</span>,</span><br><span class="line">       <span class="string">'answer_level_of_information'</span>, <span class="string">'answer_plausible'</span>, <span class="string">'answer_relevance'</span>,</span><br><span class="line">       <span class="string">'answer_satisfaction'</span>, <span class="string">'answer_type_instructions'</span>,</span><br><span class="line">       <span class="string">'answer_type_procedure'</span>, <span class="string">'answer_type_reason_explanation'</span>,</span><br><span class="line">       <span class="string">'answer_well_written'</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train[target_cols]</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>question_asker_intent_understanding</th>
+      <th>question_body_critical</th>
+      <th>question_conversational</th>
+      <th>question_expect_short_answer</th>
+      <th>question_fact_seeking</th>
+      <th>question_has_commonly_accepted_answer</th>
+      <th>question_interestingness_others</th>
+      <th>question_interestingness_self</th>
+      <th>question_multi_intent</th>
+      <th>question_not_really_a_question</th>
+      <th>...</th>
+      <th>question_well_written</th>
+      <th>answer_helpful</th>
+      <th>answer_level_of_information</th>
+      <th>answer_plausible</th>
+      <th>answer_relevance</th>
+      <th>answer_satisfaction</th>
+      <th>answer_type_instructions</th>
+      <th>answer_type_procedure</th>
+      <th>answer_type_reason_explanation</th>
+      <th>answer_well_written</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.500000</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>0.444444</td>
+      <td>0.444444</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.888889</td>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>0.888889</td>
+      <td>0.888889</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.888889</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.888889</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>0.666667</td>
+      <td>0.444444</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.777778</td>
+      <td>0.777778</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>1.000000</td>
+      <td>0.888889</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.888889</td>
+      <td>0.666667</td>
+      <td>0.666667</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>0.444444</td>
+      <td>0.444444</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.888889</td>
+      <td>0.833333</td>
+      <td>0.333333</td>
+      <td>0.833333</td>
+      <td>1.000000</td>
+      <td>0.800000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>0.666667</td>
+      <td>0.666667</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6074</th>
+      <td>1.000000</td>
+      <td>0.777778</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.0</td>
+      <td>0.888889</td>
+      <td>0.888889</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.777778</td>
+      <td>1.000000</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.866667</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.888889</td>
+    </tr>
+    <tr>
+      <th>6075</th>
+      <td>1.000000</td>
+      <td>0.777778</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>0.5</td>
+      <td>0.777778</td>
+      <td>0.777778</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.777778</td>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.733333</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+      <td>0.888889</td>
+    </tr>
+    <tr>
+      <th>6076</th>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>0.444444</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.444444</td>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>0.888889</td>
+      <td>0.888889</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>0.555556</td>
+    </tr>
+    <tr>
+      <th>6077</th>
+      <td>1.000000</td>
+      <td>0.444444</td>
+      <td>0.333333</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.777778</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.533333</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>0.666667</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>6078</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>0.500000</td>
+      <td>1.000000</td>
+      <td>0.5</td>
+      <td>0.777778</td>
+      <td>0.777778</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.000000</td>
+      <td>0.888889</td>
+      <td>0.555556</td>
+      <td>1.000000</td>
+      <td>0.888889</td>
+      <td>0.733333</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>6079 rows × 30 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">6</span>, <span class="number">5</span>, figsize=(<span class="number">18</span>, <span class="number">15</span>))</span><br><span class="line">axes = axes.ravel()</span><br><span class="line">bins = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, col <span class="keyword">in</span> enumerate(target_cols):</span><br><span class="line">    ax = axes[i]</span><br><span class="line">    sns.distplot(train[col], label=col, kde=<span class="literal">False</span>, bins=bins, ax=ax)</span><br><span class="line">    <span class="comment"># ax.set_title(col)</span></span><br><span class="line">    ax.set_xlim([<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    ax.set_ylim([<span class="number">0</span>, <span class="number">6079</span>])</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line">plt.close()</span><br></pre></td></tr></table></figure>
+
+<p><img src="output_25_0.png" alt="png"></p>
+<p>It seems some of the labels are quite imbalanced. For example “question_not_really_a_question” is almost always 0, which means most of the question in the data is not a noisy data but an “actual question”.</p>
+<h2 id="Nan-values"><a href="#Nan-values" class="headerlink" title="Nan values"></a>Nan values</h2><p>There is no nan values in the data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train.isna().sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>qa_id                                    0
+question_title                           0
+question_body                            0
+question_user_name                       0
+question_user_page                       0
+answer                                   0
+answer_user_name                         0
+answer_user_page                         0
+url                                      0
+category                                 0
+host                                     0
+question_asker_intent_understanding      0
+question_body_critical                   0
+question_conversational                  0
+question_expect_short_answer             0
+question_fact_seeking                    0
+question_has_commonly_accepted_answer    0
+question_interestingness_others          0
+question_interestingness_self            0
+question_multi_intent                    0
+question_not_really_a_question           0
+question_opinion_seeking                 0
+question_type_choice                     0
+question_type_compare                    0
+question_type_consequence                0
+question_type_definition                 0
+question_type_entity                     0
+question_type_instructions               0
+question_type_procedure                  0
+question_type_reason_explanation         0
+question_type_spelling                   0
+question_well_written                    0
+answer_helpful                           0
+answer_level_of_information              0
+answer_plausible                         0
+answer_relevance                         0
+answer_satisfaction                      0
+answer_type_instructions                 0
+answer_type_procedure                    0
+answer_type_reason_explanation           0
+answer_well_written                      0
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test.isna().sum()</span><br></pre></td></tr></table></figure>
+
+<pre><code>qa_id                 0
+question_title        0
+question_body         0
+question_user_name    0
+question_user_page    0
+answer                0
+answer_user_name      0
+answer_user_page      0
+url                   0
+category              0
+host                  0
+dtype: int64</code></pre><h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><p>The dataset consists of 5 categories: “Technology”, “Stackoverflow”, “Culture”, “Science”, “Life arts”.<br><br>Train/Test distribution is almost same.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_category = train[<span class="string">'category'</span>].value_counts()</span><br><span class="line">test_category = test[<span class="string">'category'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">train_category.plot(kind=<span class="string">'bar'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].set_title(<span class="string">'Train'</span>)</span><br><span class="line">test_category.plot(kind=<span class="string">'bar'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].set_title(<span class="string">'Test'</span>)</span><br><span class="line">print(<span class="string">'Train/Test category distribution'</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Train/Test category distribution</code></pre><p><img src="output_32_1.png" alt="png"></p>
+<h2 id="Word-Cloud-visualization"><a href="#Word-Cloud-visualization" class="headerlink" title="Word Cloud visualization"></a>Word Cloud visualization</h2><p>Let’s see what kind of word are used for question and answer. Also let’s check the difference between train and test.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_wordcloud</span><span class="params">(text, ax, title=None)</span>:</span></span><br><span class="line">    wordcloud = WordCloud(max_font_size=<span class="literal">None</span>, background_color=<span class="string">'white'</span>,</span><br><span class="line">                          width=<span class="number">1200</span>, height=<span class="number">1000</span>).generate(text_cat)</span><br><span class="line">    ax.imshow(wordcloud)</span><br><span class="line">    <span class="keyword">if</span> title <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        ax.set_title(title)</span><br><span class="line">    ax.axis(<span class="string">"off"</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Training data Word Cloud'</span>)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">16</span>, <span class="number">18</span>))</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(train[<span class="string">'question_title'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">0</span>], <span class="string">'Question title'</span>)</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(train[<span class="string">'question_body'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">1</span>], <span class="string">'Question body'</span>)</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(train[<span class="string">'answer'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">2</span>], <span class="string">'Answer'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">fig.show()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Training data Word Cloud</code></pre><p><img src="output_35_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Test data Word Cloud'</span>)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">16</span>, <span class="number">18</span>))</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(test[<span class="string">'question_title'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">0</span>], <span class="string">'Question title'</span>)</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(test[<span class="string">'question_body'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">1</span>], <span class="string">'Question body'</span>)</span><br><span class="line"></span><br><span class="line">text_cat = <span class="string">' '</span>.join(test[<span class="string">'answer'</span>].values)</span><br><span class="line">plot_wordcloud(text_cat, axes[<span class="number">2</span>], <span class="string">'Answer'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">fig.show()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Test data Word Cloud</code></pre><p><img src="output_36_1.png" alt="png"></p>
+<p>It seems common word usage distribution is similar between train &amp; test dataset!</p>
+<h2 id="Correlation-in-target-labels"><a href="#Correlation-in-target-labels" class="headerlink" title="Correlation in target labels"></a>Correlation in target labels</h2><p>I could find following 3 pairs are <strong>correlated</strong>:</p>
+<ul>
+<li>“question_type_instructions” &amp; “answer_type_instructions”</li>
+<li>“question_type_procedure” &amp; “answer_type_procedure”</li>
+<li>“question_type_reason_explanation” &amp; “answer_type_reason_explanation” </li>
+</ul>
+<p>This is reasonable that same evaluation on both question &amp; answer are correlated.</p>
+<p>On the other hand, <strong>Anticorrelation</strong> pattern can be found on following pairs:</p>
+<ul>
+<li>“question_fact_seeking” &amp; “question_opinion_seeking”</li>
+<li>“answer_type_instruction” &amp; “answer_type_reason_explanation”</li>
+</ul>
+<p>I think this is also reasonable that question that asks fact &amp; opinion conflicts.<br><br>And answer which shows instruction or reason explanation also conflicts.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">18</span>, <span class="number">18</span>))</span><br><span class="line">sns.heatmap(train[target_cols].corr(), ax=ax)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f286829d198&gt;</code></pre><p><img src="output_39_1.png" alt="png"></p>
+<h2 id="User-check"><a href="#User-check" class="headerlink" title="User check"></a>User check</h2><p>The dataset contains question user and answer user information. This may be because user attribution is impotant, same user tend to answer same kind of question and same answer user tends to answer in similar quality.</p>
+<p>Let’s check if how the user are distributed, and the user are duplicated in train/test or not.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">train_question_user = train[<span class="string">'question_user_name'</span>].unique()</span><br><span class="line">test_question_user = test[<span class="string">'question_user_name'</span>].unique()</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Number of unique question user in train: '</span>, len(train_question_user))</span><br><span class="line">print(<span class="string">'Number of unique question user in test : '</span>, len(test_question_user))</span><br><span class="line">print(<span class="string">'Number of unique question user in both train &amp; test : '</span>, len(set(train_question_user) &amp; set(test_question_user)))</span><br></pre></td></tr></table></figure>
+
+<pre><code>Number of unique question user in train:  3215
+Number of unique question user in test :  467
+Number of unique question user in both train &amp; test :  37</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">train_answer_user = train[<span class="string">'answer_user_name'</span>].unique()</span><br><span class="line">test_answer_user = test[<span class="string">'answer_user_name'</span>].unique()</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Number of unique answer user in train: '</span>, len(train_answer_user))</span><br><span class="line">print(<span class="string">'Number of unique answer user in test : '</span>, len(test_answer_user))</span><br><span class="line">print(<span class="string">'Number of unique answer user in both train &amp; test : '</span>, len(set(train_answer_user) &amp; set(test_answer_user)))</span><br></pre></td></tr></table></figure>
+
+<pre><code>Number of unique answer user in train:  4114
+Number of unique answer user in test :  363
+Number of unique answer user in both train &amp; test :  29</code></pre><p>Seems several users are in both train &amp; test dataset.</p>
+<p>Also, it seems many users ask question and answer.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Number of unique user in both question &amp; anser in train  : '</span>, len(set(train_answer_user) &amp; set(train_question_user)))</span><br><span class="line">print(<span class="string">'Number of unique user in both question &amp; anser in train  : '</span>, len(set(test_answer_user) &amp; set(test_question_user)))</span><br></pre></td></tr></table></figure>
+
+<pre><code>Number of unique user in both question &amp; anser in train  :  405
+Number of unique user in both question &amp; anser in train  :  27</code></pre><p>So these user information maybe important to predict <code>test</code> dataset!</p>
+<h1 id="Simple-feature-engineering"><a href="#Simple-feature-engineering" class="headerlink" title="Simple feature engineering"></a>Simple feature engineering</h1><p>Now, I will proceed simple feature engineering and check if it explains data well or not.</p>
+<ul>
+<li>Number of words in question title, body and answer.</li>
+<li>question_user’s question count in train.</li>
+<li>answer_user’s answer count in train.</li>
+</ul>
+<p>Work in progress… Maybe I will write in another kernel…</p>
+<h2 id="Number-of-words"><a href="#Number-of-words" class="headerlink" title="Number of words"></a>Number of words</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">char_count</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> len(s)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">word_count</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> s.count(<span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">train[<span class="string">'question_title_n_chars'</span>] = train[<span class="string">'question_title'</span>].apply(char_count)</span><br><span class="line">train[<span class="string">'question_title_n_words'</span>] = train[<span class="string">'question_title'</span>].apply(word_count)</span><br><span class="line">train[<span class="string">'question_body_n_chars'</span>] = train[<span class="string">'question_body'</span>].apply(char_count)</span><br><span class="line">train[<span class="string">'question_body_n_words'</span>] = train[<span class="string">'question_body'</span>].apply(word_count)</span><br><span class="line">train[<span class="string">'answer_n_chars'</span>] = train[<span class="string">'answer'</span>].apply(char_count)</span><br><span class="line">train[<span class="string">'answer_n_words'</span>] = train[<span class="string">'answer'</span>].apply(word_count)</span><br><span class="line"></span><br><span class="line">test[<span class="string">'question_title_n_chars'</span>] = test[<span class="string">'question_title'</span>].apply(char_count)</span><br><span class="line">test[<span class="string">'question_title_n_words'</span>] = test[<span class="string">'question_title'</span>].apply(word_count)</span><br><span class="line">test[<span class="string">'question_body_n_chars'</span>] = test[<span class="string">'question_body'</span>].apply(char_count)</span><br><span class="line">test[<span class="string">'question_body_n_words'</span>] = test[<span class="string">'question_body'</span>].apply(word_count)</span><br><span class="line">test[<span class="string">'answer_n_chars'</span>] = test[<span class="string">'answer'</span>].apply(char_count)</span><br><span class="line">test[<span class="string">'answer_n_words'</span>] = test[<span class="string">'answer'</span>].apply(word_count)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Number of chars and words in Question title</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">sns.distplot(train[<span class="string">'question_title_n_chars'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_title_n_chars'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].legend()</span><br><span class="line">sns.distplot(train[<span class="string">'question_title_n_words'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_title_n_words'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].legend()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f2861dd5c18&gt;</code></pre><p><img src="output_51_1.png" alt="png"></p>
+<p><strong>Number of chars and words in Question body</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">sns.distplot(train[<span class="string">'question_body_n_chars'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_body_n_chars'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].legend()</span><br><span class="line">sns.distplot(train[<span class="string">'question_body_n_words'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_body_n_words'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].legend()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f285cf96630&gt;</code></pre><p><img src="output_53_1.png" alt="png"></p>
+<p>Outlier has too long, let’s cut these outlier for visualization.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">train[<span class="string">'question_body_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'question_body_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">train[<span class="string">'question_body_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'question_body_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">sns.distplot(train[<span class="string">'question_body_n_chars'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_body_n_chars'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].legend()</span><br><span class="line">sns.distplot(train[<span class="string">'question_body_n_words'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'question_body_n_words'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].legend()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f2861d98f28&gt;</code></pre><p><img src="output_55_1.png" alt="png"></p>
+<p><strong>Number of chars and words in answer</strong></p>
+<p>Answer number chars/words distribution is similar to question body.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">train[<span class="string">'answer_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'answer_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">train[<span class="string">'answer_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'answer_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">sns.distplot(train[<span class="string">'answer_n_chars'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'answer_n_chars'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].legend()</span><br><span class="line">sns.distplot(train[<span class="string">'answer_n_words'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'answer_n_words'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].legend()</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f2869a2b208&gt;</code></pre><p><img src="output_57_1.png" alt="png"></p>
+<p>Are these feature useful for predicting target values?<br><br>Let’s check correlation with target values.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> cdist</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_corr</span><span class="params">(df, x_cols, y_cols)</span>:</span></span><br><span class="line">    arr1 = df[x_cols].T.values</span><br><span class="line">    arr2 = df[y_cols].T.values</span><br><span class="line">    corr_df = pd.DataFrame(<span class="number">1</span> - cdist(arr2, arr1, metric=<span class="string">'correlation'</span>), index=y_cols, columns=x_cols)</span><br><span class="line">    <span class="keyword">return</span> corr_df</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">number_feature_cols = [<span class="string">'question_title_n_chars'</span>, <span class="string">'question_title_n_words'</span>, <span class="string">'question_body_n_chars'</span>, <span class="string">'question_body_n_words'</span>, <span class="string">'answer_n_chars'</span>, <span class="string">'answer_n_words'</span>]</span><br><span class="line"><span class="comment"># train[number_feature_cols].corrwith(train[target_cols], axis=0)</span></span><br><span class="line"></span><br><span class="line">corr_df = calc_corr(train, target_cols, number_feature_cols)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr_df</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}</code></pre><p></style><p></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>question_asker_intent_understanding</th>
+      <th>question_body_critical</th>
+      <th>question_conversational</th>
+      <th>question_expect_short_answer</th>
+      <th>question_fact_seeking</th>
+      <th>question_has_commonly_accepted_answer</th>
+      <th>question_interestingness_others</th>
+      <th>question_interestingness_self</th>
+      <th>question_multi_intent</th>
+      <th>question_not_really_a_question</th>
+      <th>...</th>
+      <th>question_well_written</th>
+      <th>answer_helpful</th>
+      <th>answer_level_of_information</th>
+      <th>answer_plausible</th>
+      <th>answer_relevance</th>
+      <th>answer_satisfaction</th>
+      <th>answer_type_instructions</th>
+      <th>answer_type_procedure</th>
+      <th>answer_type_reason_explanation</th>
+      <th>answer_well_written</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>question_title_n_chars</th>
+      <td>0.100554</td>
+      <td>0.314277</td>
+      <td>0.034306</td>
+      <td>-0.031365</td>
+      <td>-0.035100</td>
+      <td>-0.041826</td>
+      <td>0.049084</td>
+      <td>0.060665</td>
+      <td>0.030113</td>
+      <td>-0.023643</td>
+      <td>...</td>
+      <td>0.196085</td>
+      <td>-0.000519</td>
+      <td>0.018080</td>
+      <td>0.017632</td>
+      <td>-0.009862</td>
+      <td>0.009581</td>
+      <td>-0.069191</td>
+      <td>0.004087</td>
+      <td>0.024343</td>
+      <td>0.008165</td>
+    </tr>
+    <tr>
+      <th>question_title_n_words</th>
+      <td>0.141260</td>
+      <td>0.370465</td>
+      <td>0.031890</td>
+      <td>-0.019632</td>
+      <td>-0.035725</td>
+      <td>-0.043174</td>
+      <td>0.077893</td>
+      <td>0.089153</td>
+      <td>0.027218</td>
+      <td>-0.034874</td>
+      <td>...</td>
+      <td>0.253358</td>
+      <td>-0.001145</td>
+      <td>0.012467</td>
+      <td>0.021827</td>
+      <td>-0.010214</td>
+      <td>0.007270</td>
+      <td>-0.059162</td>
+      <td>-0.004147</td>
+      <td>0.003671</td>
+      <td>0.012139</td>
+    </tr>
+    <tr>
+      <th>question_body_n_chars</th>
+      <td>-0.116880</td>
+      <td>-0.259979</td>
+      <td>0.002659</td>
+      <td>-0.105966</td>
+      <td>-0.087534</td>
+      <td>-0.038701</td>
+      <td>-0.099744</td>
+      <td>-0.105509</td>
+      <td>0.044897</td>
+      <td>0.010407</td>
+      <td>...</td>
+      <td>-0.135832</td>
+      <td>-0.003389</td>
+      <td>-0.020945</td>
+      <td>-0.002416</td>
+      <td>0.031334</td>
+      <td>-0.024069</td>
+      <td>0.153993</td>
+      <td>0.072353</td>
+      <td>0.009587</td>
+      <td>-0.026932</td>
+    </tr>
+    <tr>
+      <th>question_body_n_words</th>
+      <td>-0.103024</td>
+      <td>-0.242913</td>
+      <td>0.002077</td>
+      <td>-0.088583</td>
+      <td>-0.089874</td>
+      <td>-0.032784</td>
+      <td>-0.092080</td>
+      <td>-0.099233</td>
+      <td>0.034009</td>
+      <td>0.013857</td>
+      <td>...</td>
+      <td>-0.129099</td>
+      <td>0.003929</td>
+      <td>-0.015209</td>
+      <td>0.003125</td>
+      <td>0.033548</td>
+      <td>-0.018410</td>
+      <td>0.157553</td>
+      <td>0.065534</td>
+      <td>-0.003972</td>
+      <td>-0.034319</td>
+    </tr>
+    <tr>
+      <th>answer_n_chars</th>
+      <td>0.009147</td>
+      <td>-0.019231</td>
+      <td>0.054529</td>
+      <td>-0.120406</td>
+      <td>-0.055029</td>
+      <td>-0.056472</td>
+      <td>0.038978</td>
+      <td>0.048306</td>
+      <td>0.122885</td>
+      <td>-0.023333</td>
+      <td>...</td>
+      <td>0.040774</td>
+      <td>0.101121</td>
+      <td>0.374028</td>
+      <td>0.056591</td>
+      <td>0.081740</td>
+      <td>0.172773</td>
+      <td>-0.041012</td>
+      <td>0.069276</td>
+      <td>0.209418</td>
+      <td>0.072056</td>
+    </tr>
+    <tr>
+      <th>answer_n_words</th>
+      <td>0.012057</td>
+      <td>-0.018491</td>
+      <td>0.055402</td>
+      <td>-0.109595</td>
+      <td>-0.060784</td>
+      <td>-0.059186</td>
+      <td>0.041210</td>
+      <td>0.048392</td>
+      <td>0.109799</td>
+      <td>-0.022149</td>
+      <td>...</td>
+      <td>0.037305</td>
+      <td>0.092361</td>
+      <td>0.355994</td>
+      <td>0.054886</td>
+      <td>0.078011</td>
+      <td>0.160919</td>
+      <td>-0.042763</td>
+      <td>0.063125</td>
+      <td>0.196051</td>
+      <td>0.061938</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 30 columns</p>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">25</span>, <span class="number">5</span>))</span><br><span class="line">sns.heatmap(corr_df, ax=ax)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f285efe4a20&gt;</code></pre><p><img src="output_62_1.png" alt="png"></p>
+<p>We can see following relationship</p>
+<ul>
+<li>length of answer is correlated with “answer_level_of_information”.</li>
+<li>length of question_title is correlated with “question_body_critical” and length of question body is anticorrelated with it.</li>
+<li>length of question_body is anticorrelated with “question_well_written”</li>
+</ul>
+<h2 id="Number-of-question-or-answer-by-user"><a href="#Number-of-question-or-answer-by-user" class="headerlink" title="Number of question or answer by user"></a>Number of question or answer by user</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">num_question = train[<span class="string">'question_user_name'</span>].value_counts()</span><br><span class="line">num_answer = train[<span class="string">'answer_user_name'</span>].value_counts()</span><br><span class="line"></span><br><span class="line">train[<span class="string">'num_answer_user'</span>] = train[<span class="string">'answer_user_name'</span>].map(num_answer)</span><br><span class="line">train[<span class="string">'num_question_user'</span>] = train[<span class="string">'question_user_name'</span>].map(num_question)</span><br><span class="line">test[<span class="string">'num_answer_user'</span>] = test[<span class="string">'answer_user_name'</span>].map(num_answer)</span><br><span class="line">test[<span class="string">'num_question_user'</span>] = test[<span class="string">'question_user_name'</span>].map(num_question)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # map is done by train data, we need to fill value for user which does not appear in train data...</span></span><br><span class="line"><span class="comment"># test['num_answer_user'].fillna(1, inplace=True)</span></span><br><span class="line"><span class="comment"># test['num_question_user'].fillna(1, inplace=True)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">number_feature_cols = [<span class="string">'num_answer_user'</span>, <span class="string">'num_question_user'</span>]</span><br><span class="line"><span class="comment"># train[number_feature_cols].corrwith(train[target_cols], axis=0)</span></span><br><span class="line"></span><br><span class="line">corr_df = calc_corr(train, target_cols, number_feature_cols)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">30</span>, <span class="number">2</span>))</span><br><span class="line">sns.heatmap(corr_df, ax=ax)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2869c51390&gt;</code></pre><p><img src="output_67_1.png" alt="png"></p>
+<p>Although correlation scale is small and it might not be a “true correlation”, I can see following pattern:</p>
+<ul>
+<li><code>num_question_user</code> and <code>question_conversational</code> is correlated: People who post question a lot tend to ask question in conversational form.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>That’s all for the start introduction of this competition!</p>
+<h3 style="color:red">If this kernel helps you, please upvote to keep me motivated :)<br>Thanks!</h3>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/analysis/">ANALYSIS</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>GOOGLE-QUEST-FIRST-DATA-INTRODUCTION</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Google-QUEST-Q-amp-A-Labeling"><span class="nav-number">1.</span> <span class="nav-text">Google QUEST Q&amp;A Labeling</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-loading-and-data-explanation"><span class="nav-number">2.</span> <span class="nav-text">Data loading and data explanation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target-labels"><span class="nav-number">2.1.</span> <span class="nav-text">target labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-columns"><span class="nav-number">2.2.</span> <span class="nav-text">feature columns</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exploratory-Data-Analysis"><span class="nav-number">3.</span> <span class="nav-text">Exploratory Data Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target-label-distribution"><span class="nav-number">3.1.</span> <span class="nav-text">target label distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nan-values"><span class="nav-number">3.2.</span> <span class="nav-text">Nan values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Category"><span class="nav-number">3.3.</span> <span class="nav-text">Category</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word-Cloud-visualization"><span class="nav-number">3.4.</span> <span class="nav-text">Word Cloud visualization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Correlation-in-target-labels"><span class="nav-number">3.5.</span> <span class="nav-text">Correlation in target labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-check"><span class="nav-number">3.6.</span> <span class="nav-text">User check</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Simple-feature-engineering"><span class="nav-number">4.</span> <span class="nav-text">Simple feature engineering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Number-of-words"><span class="nav-number">4.1.</span> <span class="nav-text">Number of words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number-of-question-or-answer-by-user"><span class="nav-number">4.2.</span> <span class="nav-text">Number of question or answer by user</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">4.2.1.</span> <span class="nav-text">If this kernel helps you, please upvote to keep me motivated :)Thanks!</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

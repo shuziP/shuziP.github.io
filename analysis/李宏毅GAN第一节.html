@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="李宏毅GAN 第一节since sliced bread有史以来； GAN zoo收录了各种GAN（18年五月有300多种 ICASSP统计adversarial 17年2篇，18年41篇，增长速度非常快 Basic Idea of GANQ1: Why generator cannot learn by itself? Q2: Why discriminator don’t generate o">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/analysis/李宏毅GAN第一节.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="李宏毅GAN 第一节since sliced bread有史以来； GAN zoo收录了各种GAN（18年五月有300多种 ICASSP统计adversarial 17年2篇，18年41篇，增长速度非常快 Basic Idea of GANQ1: Why generator cannot learn by itself? Q2: Why discriminator don’t generate o">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-11T01:47:56.780Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="李宏毅GAN 第一节since sliced bread有史以来； GAN zoo收录了各种GAN（18年五月有300多种 ICASSP统计adversarial 17年2篇，18年41篇，增长速度非常快 Basic Idea of GANQ1: Why generator cannot learn by itself? Q2: Why discriminator don’t generate o">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/analysis/李宏毅GAN第一节">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="https://github.com/shuziP" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-文章essays">
+
+    <a href="/" rel="section">文章essays</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis menu-item-active">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <h1 id="李宏毅GAN-第一节"><a href="#李宏毅GAN-第一节" class="headerlink" title="李宏毅GAN 第一节"></a>李宏毅GAN 第一节</h1><p>since sliced bread有史以来；</p>
+<p>GAN zoo收录了各种GAN（18年五月有300多种</p>
+<p>ICASSP统计adversarial 17年2篇，18年41篇，增长速度非常快</p>
+<h2 id="Basic-Idea-of-GAN"><a href="#Basic-Idea-of-GAN" class="headerlink" title="Basic Idea of GAN"></a>Basic Idea of GAN</h2><p>Q1: Why generator cannot learn by itself?</p>
+<p>Q2: Why discriminator don’t generate object itself? </p>
+<p>Q3: How discriminator and generator interact? </p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>$$</p>
+<p>$$</p>
+<p>…</p>
+<h2 id="Structured-Learning"><a href="#Structured-Learning" class="headerlink" title="Structured Learning"></a>Structured Learning</h2><p>One-shot/Zero-shot Learning</p>
+<p>(输出的类别非常多，有些类别分类器完全没见过，没有训练样本，模型要创造一个它没见过的类别。)</p>
+<p>{One-shot/Zero-shot Learning:<br>In classification, each class has some examples.<br>In structured learning,<br>If you consider each possible output as a “class” ……<br>Since the output space is huge, most “classes” do not have any training data.<br>Machine has to create new stuff during testing.<br>Need more intelligence</p>
+<p>在分类中,每个类都有一些例子。</p>
+<p>在结构化的学习,如果你考虑每一个可能的输出作为一个“类”……</p>
+<p>因为输出空间巨大,大多数“类”没有任何训练数据。</p>
+<p>机器必须在测试过程中创建新内容。需要更多的智慧}</p>
+<h2 id="Bottom-Up"><a href="#Bottom-Up" class="headerlink" title="Bottom Up"></a>Bottom Up</h2>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#李宏毅GAN-第一节"><span class="nav-number">1.</span> <span class="nav-text">李宏毅GAN 第一节</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Idea-of-GAN"><span class="nav-number">1.1.</span> <span class="nav-text">Basic Idea of GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Structured-Learning"><span class="nav-number">1.3.</span> <span class="nav-text">Structured Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bottom-Up"><span class="nav-number">1.4.</span> <span class="nav-text">Bottom Up</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
