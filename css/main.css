@@ -868,6 +868,12 @@ pre .javascript .function {
 .post-body .tabs .tab-content .tab-pane.active {
   display: block;
 }
+.pdfobject-container {
+  height: 500px;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
 .btn {
   background: transparent;
   border: 2px solid #222;
@@ -1629,7 +1635,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #11ff62;
+  background: #ffffc1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;

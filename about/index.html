@@ -57,17 +57,17 @@
   };
 </script>
 
-  <meta name="description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​">
+  <meta name="description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​     2me 2me">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ABOUT">
 <meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/about/index.html">
 <meta property="og:site_name" content="shuzip">
-<meta property="og:description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​">
+<meta property="og:description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​     2me 2me">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-06T00:41:06.715Z">
+<meta property="og:updated_time" content="2020-03-07T17:38:27.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ABOUT">
-<meta name="twitter:description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​">
+<meta name="twitter:description" content="ABOUTshuzip 在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。 偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。 ​     2me 2me">
   <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/about/">
 
 
@@ -162,7 +162,7 @@
           
           <li class="menu-item menu-item-代码code">
 
-    <a href="https://github.com/shuziP" rel="section">代码code</a>
+    <a href="/code/" rel="section">代码code</a>
 
   </li>
         
@@ -178,18 +178,27 @@
         
         
           
-          <li class="menu-item menu-item-文章essays">
+          <li class="menu-item menu-item-数据分析analysis">
 
-    <a href="/" rel="section">文章essays</a>
+    <a href="/analysis/" rel="section">数据分析analysis</a>
 
   </li>
         
         
         
           
-          <li class="menu-item menu-item-数据分析analysis">
+          <li class="menu-item menu-item-内容分类categories">
 
-    <a href="/analysis/" rel="section">数据分析analysis</a>
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-时间轴archives">
+
+    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
 
   </li>
         
@@ -205,6 +214,9 @@
     
 
     
+    
+      
+      
     
       
       
@@ -269,6 +281,8 @@
 <p>在校大学生，程序员 业余音乐人，研究领域为深度学习（NLP方向），PyTorch官方文档中文翻译组成员。</p>
 <p>偶尔在B站上传恶搞视频，在某汉化组打杂。kaggle比赛队友募集中。。。。。</p>
 <p>​    </p>
+<p><a href="http://localhost:4000/about/2me" target="_blank" rel="noopener">2me</a></p>
+<p><a href="https://shuzip.github.io/2me" target="_blank" rel="noopener">2me</a></p>
 
         
       </div>
@@ -323,22 +337,30 @@
         
           <a href="/archives">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
     
       
       
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
         
         
         
           
         
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">schlagwörter</span>
+          
         
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
       </div>
     
   </nav>
@@ -457,6 +479,31 @@
 
 
 
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
 
 
 

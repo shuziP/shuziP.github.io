@@ -59,7 +59,7 @@
 
   <meta name="description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
 <meta property="og:type" content="website">
-<meta property="og:title" content="shuzip">
+<meta property="og:title" content="谷歌语句对匹配第二名思路整理">
 <meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/index.html">
 <meta property="og:site_name" content="shuzip">
 <meta property="og:description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
@@ -76,9 +76,9 @@
 <meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_57_1.png">
 <meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_62_1.png">
 <meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/output_67_1.png">
-<meta property="og:updated_time" content="2020-02-03T22:11:54.000Z">
+<meta property="og:updated_time" content="2020-03-07T17:21:05.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shuzip">
+<meta name="twitter:title" content="谷歌语句对匹配第二名思路整理">
 <meta name="twitter:description" content="Google QUEST Q&amp;amp;A LabelingImproving automated understanding of complex question answer content  Computers are really good at answering questions with single, verifiable answers. But, humans are oft">
 <meta name="twitter:image" content="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png">
   <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/analysis/google-quest-first-data-introduction/">
@@ -90,7 +90,7 @@
   };
 </script>
 
-  <title> | shuzip</title>
+  <title>谷歌语句对匹配第二名思路整理 | shuzip</title>
   
 
 
@@ -175,7 +175,7 @@
           
           <li class="menu-item menu-item-代码code">
 
-    <a href="https://github.com/shuziP" rel="section">代码code</a>
+    <a href="/code/" rel="section">代码code</a>
 
   </li>
         
@@ -191,18 +191,27 @@
         
         
           
-          <li class="menu-item menu-item-文章essays">
+          <li class="menu-item menu-item-数据分析analysis menu-item-active">
 
-    <a href="/" rel="section">文章essays</a>
+    <a href="/analysis/" rel="section">数据分析analysis</a>
 
   </li>
         
         
         
           
-          <li class="menu-item menu-item-数据分析analysis menu-item-active">
+          <li class="menu-item menu-item-内容分类categories">
 
-    <a href="/analysis/" rel="section">数据分析analysis</a>
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-时间轴archives">
+
+    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
 
   </li>
         
@@ -218,6 +227,9 @@
     
 
     
+    
+      
+      
     
       
       
@@ -262,7 +274,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
+<h1 class="post-title" itemprop="name headline">谷歌语句对匹配第二名思路整理
 
 </h1>
 
@@ -1592,22 +1604,30 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
         
           <a href="/archives">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
     
       
       
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
         
         
         
           
         
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">schlagwörter</span>
+          
         
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
       </div>
     
   </nav>
@@ -1726,6 +1746,31 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
 
 
 
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
 
 
 

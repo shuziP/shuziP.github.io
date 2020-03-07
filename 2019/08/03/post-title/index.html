@@ -159,7 +159,7 @@
           
           <li class="menu-item menu-item-代码code">
 
-    <a href="https://github.com/shuziP" rel="section">代码code</a>
+    <a href="/code/" rel="section">代码code</a>
 
   </li>
         
@@ -175,18 +175,27 @@
         
         
           
-          <li class="menu-item menu-item-文章essays">
+          <li class="menu-item menu-item-数据分析analysis">
 
-    <a href="/" rel="section">文章essays</a>
+    <a href="/analysis/" rel="section">数据分析analysis</a>
 
   </li>
         
         
         
           
-          <li class="menu-item menu-item-数据分析analysis">
+          <li class="menu-item menu-item-内容分类categories">
 
-    <a href="/analysis/" rel="section">数据分析analysis</a>
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-时间轴archives">
+
+    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
 
   </li>
         
@@ -301,7 +310,7 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2020/01/12/first/" rel="prev" title="中二不是病，只是部分人不能理解的浪漫">
+              <a href="/2020/01/12/一些思考/first/" rel="prev" title="中二不是病，只是部分人不能理解的浪漫">
                 中二不是病，只是部分人不能理解的浪漫 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -347,22 +356,30 @@
         
           <a href="/archives">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
     
       
       
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
         
         
         
           
         
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">schlagwörter</span>
+          
         
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
       </div>
     
   </nav>
@@ -463,6 +480,31 @@
 
 
 
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
 
 
 
