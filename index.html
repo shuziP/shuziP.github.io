@@ -192,15 +192,6 @@
         
         
           
-          <li class="menu-item menu-item-时间轴archives">
-
-    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section">ABOUT</a>
@@ -230,7 +221,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/08/一些思考/将想法写出来的意义/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/14/技术/inception整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shuzip">
@@ -247,7 +238,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/08/一些思考/将想法写出来的意义/" class="post-title-link" itemprop="url">将想法写出来的意义</a>
+                <a href="/2020/03/14/技术/inception整理/" class="post-title-link" itemprop="url">Unbenannt</a>
               
             
           </h1>
@@ -266,27 +257,22 @@
                 
               
 
-              <time title="Erstellt: 2020-03-08 01:12:48 / Geändert am: 01:18:24" itemprop="dateCreated datePublished" datetime="2020-03-08T01:12:48+08:00">2020-03-08</time>
+              <time title="Erstellt: 2020-03-14 23:30:40" itemprop="dateCreated datePublished" datetime="2020-03-14T23:30:40+08:00">2020-03-14</time>
             </span>
           
             
 
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2020-03-15 19:28:44" itemprop="dateModified" datetime="2020-03-15T19:28:44+08:00">2020-03-15</time>
               </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
+            
           
 
           <br>
@@ -302,14 +288,15 @@
       
           
             <p>
-              人都有自己但心路历程，但我不想把我的想法放到知乎，简书，微博那样的空间供人讨论（无论是否有人在意）所以，放在自己搭建的博客上，假意已经发声，但不需要被瞩目，这最好不过了。
-
-              
+              inception资料整理pytorch版本的实现（前向传播非常清晰，但只实现了v3版本：
+https://pytorch.org/hub/pytorch_vision_inception_v3/
+https://github.com/pytorch/vision/blob/master/torch
+              ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/03/08/一些思考/将想法写出来的意义/#more" rel="contents">
+              <a class="btn" href="/2020/03/14/技术/inception整理/#more" rel="contents">
                 Weiterlesen &raquo;
               </a>
             </div>
@@ -410,10 +397,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="什么是马尔可夫决策？"><a href="#什么是马尔可夫决策？" class="headerlink" title="什么是马尔可夫决策？"></a>什么是马尔可夫决策？</h2><p>马尔可夫决策过程（Markov Decision Process, MDP）是<a href="https://baike.baidu.com/item/序贯决策/9036320" target="_blank" rel="noopener">序贯决策</a>（sequential decision）的数学模型，用于在系统状态具有<a href="https://baike.baidu.com/item/马尔可夫性质/23149887" target="_blank" rel="noopener">马尔可夫性质</a>的环境中模拟<a href="https://baike.baidu.com/item/智能体/9446647" target="_blank" rel="noopener">智能体</a>可实现的随机性策略与回报</p>
+          <h2 id="什么是马尔可夫决策？"><a href="#什么是马尔可夫决策？" class="headerlink" title="什么是马尔可夫决策？"></a>什么是马尔可夫决策？</h2><p>马尔可夫决策过程（Markov Decision Process, MDP）是<a href="https://baike.baidu.com/item/序贯决策/9036320">序贯决策</a>（sequential decision）的数学模型，用于在系统状态具有<a href="https://baike.baidu.com/item/马尔可夫性质/23149887">马尔可夫性质</a>的环境中模拟<a href="https://baike.baidu.com/item/智能体/9446647">智能体</a>可实现的随机性策略与回报</p>
 <p>MDP基于一组交互对象，即智能体和环境进行构建，所具有的要素包括状态、动作、策略和奖励 [2]  [4]  。</p>
 <p>在MDP的模拟中，智能体会感知当前的系统状态，按策略对环境实施动作，从而改变环境的状态并得到奖励，奖励随时间的积累被称为回报 [4]  。</p>
-<h2 id="什么是凸优化？"><a href="#什么是凸优化？" class="headerlink" title="什么是凸优化？"></a>什么是凸优化？</h2><p><strong>凸优化</strong>，或叫做<strong>凸最优化</strong>，<strong>凸最小化</strong>，是数学<a href="https://baike.baidu.com/item/最优化" target="_blank" rel="noopener">最优化</a>的一个子领域，研究定义于<a href="https://baike.baidu.com/item/凸集" target="_blank" rel="noopener">凸集</a>中的<a href="https://baike.baidu.com/item/凸函数" target="_blank" rel="noopener">凸函数</a>最小化的问题。</p>
+<h2 id="什么是凸优化？"><a href="#什么是凸优化？" class="headerlink" title="什么是凸优化？"></a>什么是凸优化？</h2><p><strong>凸优化</strong>，或叫做<strong>凸最优化</strong>，<strong>凸最小化</strong>，是数学<a href="https://baike.baidu.com/item/最优化">最优化</a>的一个子领域，研究定义于<a href="https://baike.baidu.com/item/凸集">凸集</a>中的<a href="https://baike.baidu.com/item/凸函数">凸函数</a>最小化的问题。</p>
 <p>以下问题都是凸优化问题，或可以通过改变变量而转化为凸优化问题：</p>
           <!--noindex-->
           
@@ -1218,10 +1205,6 @@ Freesound Audio Tagging 2019赛题地址Private Score
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
-  </nav>
-
 
           </div>
           
@@ -1252,7 +1235,7 @@ Freesound Audio Tagging 2019赛题地址Private Score
         
           <a href="/archives">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
@@ -1273,7 +1256,7 @@ Freesound Audio Tagging 2019赛题地址Private Score
         
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">Kategorien</span>
         </a>
       </div>

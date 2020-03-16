@@ -57,18 +57,18 @@
   };
 </script>
 
-  <meta name="description" content="人都有自己但心路历程，但我不想把我的想法放到知乎，简书，微博那样的空间供人讨论（无论是否有人在意）所以，放在自己搭建的博客上，假意已经发声，但不需要被瞩目，这最好不过了。">
+  <meta name="description" content="inception资料整理pytorch版本的实现（前向传播非常清晰，但只实现了v3版本： https://pytorch.org/hub/pytorch_vision_inception_v3/ https://github.com/pytorch/vision/blob/master/torchvision/models/inception.py tensorflow inception v2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将想法写出来的意义">
-<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/2020/03/08/一些思考/将想法写出来的意义/index.html">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/2020/03/14/技术/inception整理/index.html">
 <meta property="og:site_name" content="shuzip">
-<meta property="og:description" content="人都有自己但心路历程，但我不想把我的想法放到知乎，简书，微博那样的空间供人讨论（无论是否有人在意）所以，放在自己搭建的博客上，假意已经发声，但不需要被瞩目，这最好不过了。">
+<meta property="og:description" content="inception资料整理pytorch版本的实现（前向传播非常清晰，但只实现了v3版本： https://pytorch.org/hub/pytorch_vision_inception_v3/ https://github.com/pytorch/vision/blob/master/torchvision/models/inception.py tensorflow inception v2">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-07T17:18:24.453Z">
+<meta property="og:updated_time" content="2020-03-15T11:28:44.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将想法写出来的意义">
-<meta name="twitter:description" content="人都有自己但心路历程，但我不想把我的想法放到知乎，简书，微博那样的空间供人讨论（无论是否有人在意）所以，放在自己搭建的博客上，假意已经发声，但不需要被瞩目，这最好不过了。">
-  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/08/一些思考/将想法写出来的意义/">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="inception资料整理pytorch版本的实现（前向传播非常清晰，但只实现了v3版本： https://pytorch.org/hub/pytorch_vision_inception_v3/ https://github.com/pytorch/vision/blob/master/torchvision/models/inception.py tensorflow inception v2">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/14/技术/inception整理/">
 
 
 <script id="page.configurations">
@@ -77,7 +77,7 @@
   };
 </script>
 
-  <title>将想法写出来的意义 | shuzip</title>
+  <title> | shuzip</title>
   
 
 
@@ -196,15 +196,6 @@
         
         
           
-          <li class="menu-item menu-item-时间轴archives">
-
-    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section">ABOUT</a>
@@ -235,7 +226,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/08/一些思考/将想法写出来的意义/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/shuziP/shuzip.github.io.git/2020/03/14/技术/inception整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shuzip">
@@ -249,7 +240,7 @@
       <header class="post-header">
 
         
-          <h1 class="post-title" itemprop="name headline">将想法写出来的意义
+          <h1 class="post-title" itemprop="name headline">
 
               
             
@@ -269,27 +260,22 @@
                 
               
 
-              <time title="Erstellt: 2020-03-08 01:12:48 / Geändert am: 01:18:24" itemprop="dateCreated datePublished" datetime="2020-03-08T01:12:48+08:00">2020-03-08</time>
+              <time title="Erstellt: 2020-03-14 23:30:40" itemprop="dateCreated datePublished" datetime="2020-03-14T23:30:40+08:00">2020-03-14</time>
             </span>
           
             
 
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2020-03-15 19:28:44" itemprop="dateModified" datetime="2020-03-15T19:28:44+08:00">2020-03-15</time>
               </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/思考/" itemprop="url" rel="index"><span itemprop="name">思考</span></a></span>
-
-                
-                
-              
-            </span>
+            
           
 
           <br>
@@ -303,7 +289,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <pre><code>人都有自己但心路历程，但我不想把我的想法放到知乎，简书，微博那样的空间供人讨论（无论是否有人在意）</code></pre><p>所以，放在自己搭建的博客上，假意已经发声，但不需要被瞩目，这最好不过了。</p>
+        <h1 id="inception资料整理"><a href="#inception资料整理" class="headerlink" title="inception资料整理"></a>inception资料整理</h1><h2 id="pytorch版本的实现"><a href="#pytorch版本的实现" class="headerlink" title="pytorch版本的实现"></a>pytorch版本的实现</h2><p>（前向传播非常清晰，但只实现了v3版本：</p>
+<p><a href="https://pytorch.org/hub/pytorch_vision_inception_v3/">https://pytorch.org/hub/pytorch_vision_inception_v3/</a></p>
+<p><a href="https://github.com/pytorch/vision/blob/master/torchvision/models/inception.py">https://github.com/pytorch/vision/blob/master/torchvision/models/inception.py</a></p>
+<h2 id="tensorflow-inception-v2，v3实现"><a href="#tensorflow-inception-v2，v3实现" class="headerlink" title="tensorflow inception v2，v3实现"></a>tensorflow inception v2，v3实现</h2><p>（代码巨难读）</p>
+<ul>
+<li><p>V2: <a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v2.py">https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v2.py</a></p>
+</li>
+<li><p>V3: <a href="https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v3.py">https://github.com/tensorflow/models/blob/master/research/slim/nets/inception_v3.py</a></p>
+</li>
+</ul>
+<p>其中tf的v2版本引用了的论文是Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</p>
+<p><a href="http://arxiv.org/abs/1502.03167">http://arxiv.org/abs/1502.03167</a>.</p>
+<p>（在这篇论文里作者只是把初始的学习率调整也会起一个新的名字）</p>
+<p>v3引用的论文则是今晚讲解的论文</p>
+<p>Rethinking the Inception Architecture for Computer Vision</p>
+<p><a href="https://arxiv.org/abs/1512.00567">https://arxiv.org/abs/1512.00567</a></p>
+<p># </p>
+<p>】】】】】】</p>
 
     </div>
 
@@ -352,8 +355,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -365,7 +377,7 @@
         
           <a href="/archives">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
@@ -386,7 +398,7 @@
         
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">Kategorien</span>
         </a>
       </div>
@@ -397,6 +409,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#inception资料整理"><span class="nav-number">1.</span> <span class="nav-text">inception资料整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pytorch版本的实现"><span class="nav-number">1.1.</span> <span class="nav-text">pytorch版本的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow-inception-v2，v3实现"><span class="nav-number">1.2.</span> <span class="nav-text">tensorflow inception v2，v3实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>

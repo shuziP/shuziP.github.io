@@ -209,15 +209,6 @@
         
         
           
-          <li class="menu-item menu-item-时间轴archives">
-
-    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section">ABOUT</a>
@@ -330,9 +321,9 @@
 <blockquote>
 <p>Computers are really good at answering questions with single, verifiable answers. But, humans are often still better at answering questions about opinions, recommendations, or personal experiences.<br>…<br>In this competition, you’re challenged to use this new dataset to build predictive algorithms for different subjective aspects of question-answering.</p>
 </blockquote>
-<p><img src="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png" alt></p>
+<p><img src="https://storage.googleapis.com/kaggle-media/competitions/google-research/human_computable_dimensions_1.png" alt=""></p>
 <p>The competition is <strong>Notebook-only competition</strong>. Your Notebook will re-run automatically against an unseen test set.</p>
-<p>This competition data is small, only made of 6079 rows of train dataset.<br><br>So I think this competition is <strong>easy for beginners to participate</strong> in terms of computational resource (unless you use BERT or any other heavy models to get good score), compared to the past competition hosted by Google like Open Image Challenges which requires a lot of GPU resources to train the model.</p>
+<p>This competition data is small, only made of 6079 rows of train dataset.<br/><br>So I think this competition is <strong>easy for beginners to participate</strong> in terms of computational resource (unless you use BERT or any other heavy models to get good score), compared to the past competition hosted by Google like Open Image Challenges which requires a lot of GPU resources to train the model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gc</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm_notebook <span class="keyword">as</span> tqdm</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np <span class="comment"># linear algebra</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment"># data processing, CSV file I/O (e.g. pd.read_csv)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> IPython.core.display <span class="keyword">import</span> display, HTML</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- plotly ---</span></span><br><span class="line"><span class="keyword">from</span> plotly <span class="keyword">import</span> tools, subplots</span><br><span class="line"><span class="keyword">import</span> plotly.offline <span class="keyword">as</span> py</span><br><span class="line">py.init_notebook_mode(connected=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">import</span> plotly.graph_objs <span class="keyword">as</span> go</span><br><span class="line"><span class="keyword">import</span> plotly.express <span class="keyword">as</span> px</span><br><span class="line"><span class="keyword">import</span> plotly.figure_factory <span class="keyword">as</span> ff</span><br><span class="line"></span><br><span class="line"><span class="comment"># --- models ---</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="keyword">import</span> catboost <span class="keyword">as</span> cb</span><br></pre></td></tr></table></figure>
 
 <script type="text/javascript">
@@ -362,7 +353,7 @@ require(['plotly'], function(Plotly) {
 
 <pre><code>CPU times: user 188 ms, sys: 68 ms, total: 256 ms
 Wall time: 260 ms</code></pre><p>Let’s check each data size.</p>
-<p>Train and test data consists of 6079 rows and 476 rows respectively.<br><br>We have 30 different target labels to predict.<br><br>Rest 10 columns are given as feature.</p>
+<p>Train and test data consists of 6079 rows and 476 rows respectively.<br/><br>We have 30 different target labels to predict.<br/><br>Rest 10 columns are given as feature.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'train'</span>, train.shape)</span><br><span class="line">print(<span class="string">'test'</span>, test.shape)</span><br><span class="line">print(<span class="string">'sample_submission'</span>, sample_submission.shape)</span><br></pre></td></tr></table></figure>
 
 <pre><code>train (6079, 41)
@@ -383,7 +374,7 @@ sample_submission (476, 31)</code></pre><h2 id="target-labels"><a href="#target-
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -581,7 +572,7 @@ sample_submission (476, 31)</code></pre><h2 id="target-labels"><a href="#target-
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -672,7 +663,7 @@ sample_submission (476, 31)</code></pre><h2 id="target-labels"><a href="#target-
 
 <p>Let’s focus on the first row of the data. You can access original page mentioned in the <code>url</code> column.</p>
 <ul>
-<li><a href="https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens" target="_blank" rel="noopener">https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens</a></li>
+<li><a href="https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens">https://photo.stackexchange.com/questions/9169/what-am-i-losing-when-using-extension-tubes-instead-of-a-macro-lens</a></li>
 </ul>
 <p> Only the question contains “title” (<code>question_title</code>), and we have <code>question_body</code> and <code>answer</code> which is given by sentences.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train0 = train.iloc[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">'URL           : '</span>, train0[<span class="string">'url'</span>])</span><br><span class="line">print(<span class="string">'question_title: '</span>, train0[<span class="string">'question_title'</span>])</span><br><span class="line">print(<span class="string">'question_body : '</span>, train0[<span class="string">'question_body'</span>])</span><br></pre></td></tr></table></figure>
@@ -709,7 +700,7 @@ Coupled on my 50mm, a full 60mm&apos;ish extension tube results in a DOF of abou
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -870,7 +861,7 @@ Coupled on my 50mm, a full 60mm&apos;ish extension tube results in a DOF of abou
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1232,7 +1223,7 @@ answer_user_page      0
 url                   0
 category              0
 host                  0
-dtype: int64</code></pre><h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><p>The dataset consists of 5 categories: “Technology”, “Stackoverflow”, “Culture”, “Science”, “Life arts”.<br><br>Train/Test distribution is almost same.</p>
+dtype: int64</code></pre><h2 id="Category"><a href="#Category" class="headerlink" title="Category"></a>Category</h2><p>The dataset consists of 5 categories: “Technology”, “Stackoverflow”, “Culture”, “Science”, “Life arts”.<br/><br>Train/Test distribution is almost same.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_category = train[<span class="string">'category'</span>].value_counts()</span><br><span class="line">test_category = test[<span class="string">'category'</span>].value_counts()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">train_category.plot(kind=<span class="string">'bar'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].set_title(<span class="string">'Train'</span>)</span><br><span class="line">test_category.plot(kind=<span class="string">'bar'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].set_title(<span class="string">'Test'</span>)</span><br><span class="line">print(<span class="string">'Train/Test category distribution'</span>)</span><br></pre></td></tr></table></figure>
@@ -1260,7 +1251,7 @@ dtype: int64</code></pre><h2 id="Category"><a href="#Category" class="headerlink
 <li>“question_fact_seeking” &amp; “question_opinion_seeking”</li>
 <li>“answer_type_instruction” &amp; “answer_type_reason_explanation”</li>
 </ul>
-<p>I think this is also reasonable that question that asks fact &amp; opinion conflicts.<br><br>And answer which shows instruction or reason explanation also conflicts.</p>
+<p>I think this is also reasonable that question that asks fact &amp; opinion conflicts.<br/><br>And answer which shows instruction or reason explanation also conflicts.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">18</span>, <span class="number">18</span>))</span><br><span class="line">sns.heatmap(train[target_cols].corr(), ax=ax)</span><br></pre></td></tr></table></figure>
 
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f286829d198&gt;</code></pre><p><img src="output_39_1.png" alt="png"></p>
@@ -1308,7 +1299,7 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">train[<span class="string">'answer_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'answer_n_chars'</span>].clip(<span class="number">0</span>, <span class="number">5000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">train[<span class="string">'answer_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">test[<span class="string">'answer_n_words'</span>].clip(<span class="number">0</span>, <span class="number">1000</span>, inplace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">sns.distplot(train[<span class="string">'answer_n_chars'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'answer_n_chars'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">0</span>])</span><br><span class="line">axes[<span class="number">0</span>].legend()</span><br><span class="line">sns.distplot(train[<span class="string">'answer_n_words'</span>], label=<span class="string">'train'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">sns.distplot(test[<span class="string">'answer_n_words'</span>], label=<span class="string">'test'</span>, ax=axes[<span class="number">1</span>])</span><br><span class="line">axes[<span class="number">1</span>].legend()</span><br></pre></td></tr></table></figure>
 
 <pre><code>&lt;matplotlib.legend.Legend at 0x7f2869a2b208&gt;</code></pre><p><img src="output_57_1.png" alt="png"></p>
-<p>Are these feature useful for predicting target values?<br><br>Let’s check correlation with target values.</p>
+<p>Are these feature useful for predicting target values?<br/><br>Let’s check correlation with target values.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> cdist</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_corr</span><span class="params">(df, x_cols, y_cols)</span>:</span></span><br><span class="line">    arr1 = df[x_cols].T.values</span><br><span class="line">    arr2 = df[y_cols].T.values</span><br><span class="line">    corr_df = pd.DataFrame(<span class="number">1</span> - cdist(arr2, arr1, metric=<span class="string">'correlation'</span>), index=y_cols, columns=x_cols)</span><br><span class="line">    <span class="keyword">return</span> corr_df</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">number_feature_cols = [<span class="string">'question_title_n_chars'</span>, <span class="string">'question_title_n_words'</span>, <span class="string">'question_body_n_chars'</span>, <span class="string">'question_body_n_words'</span>, <span class="string">'answer_n_chars'</span>, <span class="string">'answer_n_words'</span>]</span><br><span class="line"><span class="comment"># train[number_feature_cols].corrwith(train[target_cols], axis=0)</span></span><br><span class="line"></span><br><span class="line">corr_df = calc_corr(train, target_cols, number_feature_cols)</span><br></pre></td></tr></table></figure>
@@ -1327,7 +1318,7 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1542,8 +1533,8 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
     <footer class="post-footer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2020/01/12/一些思考/first/" rel="next" title="中二不是病，只是部分人不能理解的浪漫">
-                <i class="fa fa-chevron-left"></i> 中二不是病，只是部分人不能理解的浪漫
+              <a href="/2019/08/03/post-title/" rel="next" title="Welcome!">
+                <i class="fa fa-chevron-left"></i> Welcome!
               </a>
             
           </div>
@@ -1606,7 +1597,7 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
         
           <a href="/archives">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
@@ -1627,7 +1618,7 @@ Number of unique user in both question &amp; anser in train  :  27</code></pre><
         
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">Kategorien</span>
         </a>
       </div>

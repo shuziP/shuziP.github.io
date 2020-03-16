@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="一、安装docker直接安装Docker桌面Mac版本,PyCharm社区版 二、开通阿里云容器镜像服务阿里云容器镜像服务 https://www.aliyun.com/product/acr?免费开通镜像托管，本次练习任务请将仓库地域选择上海。建议设置私有仓库，并一定牢记仓库密码，后续提交需要使用。 开通后进入镜像仓库https://cr.console.aliyun.com 切换标签页到命名空">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/草稿/数据结构/阿里云容器镜像服务mac docker.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="一、安装docker直接安装Docker桌面Mac版本,PyCharm社区版 二、开通阿里云容器镜像服务阿里云容器镜像服务 https://www.aliyun.com/product/acr?免费开通镜像托管，本次练习任务请将仓库地域选择上海。建议设置私有仓库，并一定牢记仓库密码，后续提交需要使用。 开通后进入镜像仓库https://cr.console.aliyun.com 切换标签页到命名空">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974381981245981569743819615.png">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974384416019021569743844047.png">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974386444455191569743864270.png">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974389164783061569743891566.png">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974391086988461569743910778.png">
+<meta property="og:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974393149771491569743931374.png">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/98763/cn_zh/1543592737702/edas-cloudtoolkit-idea-dockerconfig.png">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/91238/cn_zh/1541581925008/edas-account-accesskeys.png">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/91238/cn_zh/1541582053161/edas-account-accesskeys-securityprompt.png">
+<meta property="og:image" content="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/98763/cn_zh/1543593476495/edas-cloudtoolkit-idea-deploytocsk-image.png">
+<meta property="og:updated_time" content="2020-03-06T11:00:55.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="一、安装docker直接安装Docker桌面Mac版本,PyCharm社区版 二、开通阿里云容器镜像服务阿里云容器镜像服务 https://www.aliyun.com/product/acr?免费开通镜像托管，本次练习任务请将仓库地域选择上海。建议设置私有仓库，并一定牢记仓库密码，后续提交需要使用。 开通后进入镜像仓库https://cr.console.aliyun.com 切换标签页到命名空">
+<meta name="twitter:image" content="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974381981245981569743819615.png">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/草稿/数据结构/阿里云容器镜像服务mac docker">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/数据结构/">数据结构</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>阿里云容器镜像服务MAC DOCKER</li>
+          
+        
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <h2 id="一、安装docker"><a href="#一、安装docker" class="headerlink" title="一、安装docker"></a>一、安装docker</h2><p>直接安装Docker桌面Mac版本,PyCharm社区版</p>
+<h2 id="二、开通阿里云容器镜像服务"><a href="#二、开通阿里云容器镜像服务" class="headerlink" title="二、开通阿里云容器镜像服务"></a>二、开通阿里云容器镜像服务</h2><p>阿里云容器镜像服务 <a href="https://www.aliyun.com/product/acr">https://www.aliyun.com/product/acr</a>?<br>免费开通镜像托管，本次练习任务请将<strong>仓库地域选择上海</strong>。建议设置私有仓库，并一定牢记<strong>仓库密码</strong>，后续提交需要使用。</p>
+<p>开通后进入镜像仓库<a href="https://cr.console.aliyun.com/">https://cr.console.aliyun.com</a><br><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974381981245981569743819615.png" alt="enter image description here"></p>
+<p>切换标签页到命名空间，创建地址唯一的命名空间</p>
+<p><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974384416019021569743844047.png" alt="enter image description here"></p>
+<p>根据任务/比赛要求选择对应的地域（本次练习选择 <strong>上海</strong>），其他的按照自己需求选择或填写。</p>
+<p><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974386444455191569743864270.png" alt="enter image description here"></p>
+<p>选择代码源为本地仓库，灵活度大，完成创建。</p>
+<p><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974389164783061569743891566.png" alt="enter image description here"></p>
+<p>点击<strong>管理</strong>，可查看仓库的基本信息，以及<strong>登录、拉取、推送</strong>等简单操作的指南。</p>
+<p><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974391086988461569743910778.png" alt="enter image description here"></p>
+<p>详情页如下，有基本的操作命令，仓库地址一般使用公网地址即可。</p>
+<p><img src="https://tianchi-public.oss-cn-hangzhou.aliyuncs.com/public/files/forum/156974393149771491569743931374.png" alt="enter image description here"></p>
+<h3 id="2-构建镜像并推送（2-1与2-2皆可走通）"><a href="#2-构建镜像并推送（2-1与2-2皆可走通）" class="headerlink" title="2. 构建镜像并推送（2.1与2.2皆可走通）"></a>2. 构建镜像并推送（2.1与2.2皆可走通）</h3><h4 id="2-1-IDE-Cloud-Toolkit"><a href="#2-1-IDE-Cloud-Toolkit" class="headerlink" title="2.1 IDE + Cloud Toolkit"></a>2.1 IDE + Cloud Toolkit</h4><p>推荐使用 <a href="https://cn.aliyun.com/product/cloudtoolkit">Alibaba Cloud Toolkit</a> 进行操作。Cloud Toolkit 与主流 IDE 及阿里云容器镜像服务无缝集成，可以简化操作。 这里以在 IntelliJ IDEA 中使用 Alibaba Cloud Toolkit 为例。<strong>只需配置一次，之后都可一键推送～</strong></p>
+<ol>
+<li><p>在本地 IDE 中安装 Alibaba Cloud Toolkit 并进行阿里云账户配置。参见：<br><a href="https://help.aliyun.com/document_detail/98762.html">在 IntelliJ IDEA 中安装和配置 Cloud Toolkit</a></p>
+</li>
+<li><p>设置用于打包本地镜像的 Docker 环境。</p>
+<ol>
+<li><p>在 IntelliJ IDEA 工具栏单击 <strong>Tools &gt; Alibaba Cloud &gt; Preferences…</strong> 。</p>
+</li>
+<li><p>在 Settings 对话框的左侧导航栏中单击 <strong>Docker</strong>。</p>
+</li>
+<li><p>在 Docker 界面中设置 Cloud Toolkit 需要连接的 Docker 环境。</p>
+<ul>
+<li>本地为 Mac 或 Linux 操作系统，勾选 <strong>Unix Socket</strong>，然后单击 <strong>Browse</strong>，输入<code>unix:///var/run/docker.sock</code>。</li>
+<li>远程 Docker 环境：勾选 Tcp Connection，在 URI 右侧的文本框里输入远端的 Docker 环境的 URI（包括 IP 地址和端口），如 <a href="http://x.x.x.x:2375/">http://x.x.x.x:2375</a>，并确保远程主机的 HTTP 服务开启。</li>
+<li>单击 <strong>Test Connection</strong> 进行连接测试。</li>
+</ul>
+<p><strong>注意：如果出现连接测试报错，可进入 Docker 的 Settings 界面，单击左侧导航栏中的 General，然后选择 Expose daemon on tcp://localhost:2375 without TLS。</strong></p>
+<p><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/98763/cn_zh/1543592737702/edas-cloudtoolkit-idea-dockerconfig.png" alt="配置Docker"></p>
+</li>
+</ol>
+</li>
+<li><h2 id="使用阿里云主账号获取-Access-Key-ID-和-Access-Key-Secret"><a href="#使用阿里云主账号获取-Access-Key-ID-和-Access-Key-Secret" class="headerlink" title="使用阿里云主账号获取 Access Key ID 和 Access Key Secret"></a>使用阿里云主账号获取 Access Key ID 和 Access Key Secret</h2><ol>
+<li><p>进入<a href="https://home.console.aliyun.com/">阿里云控制台首页</a>。</p>
+<p>阿里云将检测您的登录状态。</p>
+<ul>
+<li>如果已登录，则进入控制台首页。</li>
+<li>如果未登录，则跳转到登录夜间，输入阿里云账号、密码，然后单击<strong>登录</strong>。登录后，跳转到控制台首页。</li>
+</ul>
+</li>
+<li><p>将光标<strong>滑动</strong>（非单击）到控制页页面右上角您的头像上，在弹出的下拉菜单中单击 <strong>accesskeys</strong>。</p>
+<p><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/91238/cn_zh/1541581925008/edas-account-accesskeys.png" alt="AccessKeys"></p>
+</li>
+<li><p>在<strong>安全提示</strong>对话框中单击<strong>继续使用 AccessKey</strong>。</p>
+<p><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/91238/cn_zh/1541582053161/edas-account-accesskeys-securityprompt.png" alt="安全提示"></p>
+</li>
+<li><p>在<strong>安全信息管理</strong>页面<strong>用户 AccessKey</strong>区域单击<strong>显示</strong>，在<strong>手机验证</strong>对话框中单击<strong>点击获取</strong>，然后输入<strong>验证码</strong>。</p>
+</li>
+<li><p>记录该账号的 Access Key ID 和 Access Key Secret。</p>
+</li>
+</ol>
+</li>
+<li><p>构建并上传应用</p>
+<ol>
+<li><p>在 IntelliJ IDEA 的菜单栏中选择 <strong>File &gt; Open…</strong> ，选择参赛的工程文件。</p>
+</li>
+<li><p>在 IntelliJ IDEA 界面左侧的 Project 中右键单击您的 Docker 应用工程名，在弹出的下拉菜单中选择 <strong>Alibaba Cloud &gt; Deploy to ACR/ACK &gt; Deploy to ACR</strong>。</p>
+</li>
+<li><p>在 Deploy to ACR 对话框中进行以下配置。</p>
+<ol>
+<li>在 Image 页签中选择</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>   Context Directory
+
+
+
+   和
+
+
+
+   Dockerfile
+
+   。
+
+   - Context Directory：参赛的工程文件所在的目录，例如上文中的 tianchi_submit_demo 。
+   - Dockerfile：选择上文中创建的 Dockerfile。
+   - Version：对上传的工程文件做版本标记。例如 1.0
+
+2. 在 Image Repositories 区域选择上文中创建的容器镜像服务的地域、命名空间和镜像仓库。</code></pre><ol start="4">
+<li>单击 <strong>RUN</strong>。<br><img src="http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/98763/cn_zh/1543593476495/edas-cloudtoolkit-idea-deploytocsk-image.png" alt="上传工程"></li>
+</ol>
+<blockquote>
+<p>下次就可以一键完成哦～</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''练习场答案'''</span></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line">file_name = <span class="string">'tcdata/num_list.csv'</span></span><br><span class="line"></span><br><span class="line">data = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一题，直接写入 Hello world</span></span><br><span class="line"></span><br><span class="line">result = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">"Q1"</span>: <span class="string">"Hello world"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"Q2"</span>: <span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">"Q3"</span>: []</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二题，求和</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(file_name, <span class="string">'r'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">    reader = csv.reader(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line"></span><br><span class="line">        data.append(int(row[<span class="number">0</span>]))</span><br><span class="line"></span><br><span class="line">    sum = sum(data)</span><br><span class="line"></span><br><span class="line">result[<span class="string">'Q2'</span>] = sum</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三题</span></span><br><span class="line"></span><br><span class="line">result[<span class="string">'Q3'</span>] = sorted(data, reverse=<span class="literal">True</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存到 result.json</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'result.json'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">    json.dump(result, f)</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<p><a href="https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.9.51df2232u6Yarx&amp;postId=93402">https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.9.51df2232u6Yarx&amp;postId=93402</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/数据结构/">数据结构</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>阿里云容器镜像服务MAC DOCKER</li>
+          
+        
+      
+    
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装docker"><span class="nav-number">1.</span> <span class="nav-text">一、安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、开通阿里云容器镜像服务"><span class="nav-number">2.</span> <span class="nav-text">二、开通阿里云容器镜像服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-构建镜像并推送（2-1与2-2皆可走通）"><span class="nav-number">2.1.</span> <span class="nav-text">2. 构建镜像并推送（2.1与2.2皆可走通）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-IDE-Cloud-Toolkit"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1 IDE + Cloud Toolkit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用阿里云主账号获取-Access-Key-ID-和-Access-Key-Secret"><span class="nav-number">3.</span> <span class="nav-text">使用阿里云主账号获取 Access Key ID 和 Access Key Secret</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

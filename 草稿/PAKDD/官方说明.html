@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="欢迎大家参加阿里云首届智能运维大赛–大规模硬盘故障预测这里为大家提供一个交流沟通的平台， 一是为了赛事的顺利开展 二是期望大家广结好友 后续的很多信息会逐步完善起来，一些不周全的地方也请大家多多包涵。 期待着大家踊跃发言，预祝大家取得好成绩！ 赛事链接：https://tianchi.aliyun.com/competition/entrance/231775/introduction?spm=5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/草稿/PAKDD/官方说明.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="欢迎大家参加阿里云首届智能运维大赛–大规模硬盘故障预测这里为大家提供一个交流沟通的平台， 一是为了赛事的顺利开展 二是期望大家广结好友 后续的很多信息会逐步完善起来，一些不周全的地方也请大家多多包涵。 期待着大家踊跃发言，预祝大家取得好成绩！ 赛事链接：https://tianchi.aliyun.com/competition/entrance/231775/introduction?spm=5">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-12T18:23:58.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="欢迎大家参加阿里云首届智能运维大赛–大规模硬盘故障预测这里为大家提供一个交流沟通的平台， 一是为了赛事的顺利开展 二是期望大家广结好友 后续的很多信息会逐步完善起来，一些不周全的地方也请大家多多包涵。 期待着大家踊跃发言，预祝大家取得好成绩！ 赛事链接：https://tianchi.aliyun.com/competition/entrance/231775/introduction?spm=5">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/草稿/PAKDD/官方说明">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/PAKDD/">PAKDD</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>官方说明</li>
+          
+        
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <p>欢迎大家参加阿里云首届智能运维大赛–大规模硬盘故障预测<br>这里为大家提供一个交流沟通的平台，</p>
+<p>一是为了赛事的顺利开展</p>
+<p>二是期望大家广结好友</p>
+<p>后续的很多信息会逐步完善起来，一些不周全的地方也请大家多多包涵。</p>
+<p>期待着大家踊跃发言，预祝大家取得好成绩！</p>
+<p>赛事链接：<a href="https://tianchi.aliyun.com/competition/entrance/231775/introduction?spm=5176.12281949.1003.5.17d224484u4LWr&amp;lang=zh-cn">https://tianchi.aliyun.com/competition/entrance/231775/introduction?spm=5176.12281949.1003.5.17d224484u4LWr&amp;lang=zh-cn</a></p>
+<p>宁缺同学贡献的开源代码：<a href="https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.12586969.1002.3.3f9a7084JKpNDQ&amp;postId=92169">https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.12586969.1002.3.3f9a7084JKpNDQ&amp;postId=92169</a></p>
+<p>数据量比较大，参赛选手可以考虑分期处理 先用近期数据做训练，同时做好特征筛选的工作；</p>
+<p>故障盘的SMART数据最长只到故障后一天，若故障前没有数据，可能是数据缺失问题导致</p>
+<p>SMART含义介绍：<a href="https://en.wikipedia.org/wiki/S.M.A.R.T">https://en.wikipedia.org/wiki/S.M.A.R.T</a>.</p>
+<p>注意区分model类型，model 1 和 model 2 是两个不同类型的盘，serial_number相同不代表它们是一块盘。</p>
+<p>不要用未来SMART数据来构建特征，如构建八月一号的特征 不要使用八月2号及其以后的数据来构建特征</p>
+<p>[Domestic] 数据和[Overseas]数据都两份相同的数据，前者供国内选手下载，后者供海外选手下载；选手只需要根据自己网络环境下载一份即可。</p>
+<p>官方FAQ链接: <a href="https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.3.3f9a70840JyVUg&amp;postId=92123">https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.3.3f9a70840JyVUg&amp;postId=92123</a></p>
+<p>初赛A榜评测时间从2月26号起变成每天有两次测评机会；</p>
+<p>初赛B榜是针对model 2的预测，注意！注意！注意！</p>
+<p>这是一则招聘广告<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只要你对我们的方向感兴趣，只要你渴望学习、成长、努力，我们统统都欢迎~~还在犹豫什么，快到碗里来</span><br></pre></td></tr></table></figure></p>
+<p>招聘团队：<br>阿里集团-阿里云智能事业群-阿里云-基础设施事业部-天基-集群智能运维团队校招</p>
+<p>团队使命：<br>为集团各大规模分布式服务和Web应用运维提供统一的基础架构、技术和人工智能服务。团队专注于提供一站式，自动化，智能化的资源服务开通，管控和运维能力。通过采用先进的人工智能系统和算法，实时监控和分析各类系统数据，并联动各相关系统进行运维操作，形成数据分析和反馈的完整闭环链路，持续优化集团资源运营和服务运维决策。天基团队的使命是为阿里巴巴各业务场景提供智能，快速，高效，稳定的DevOps平台，支撑和保障阿里巴巴全球化发展战略。</p>
+<p>算法校招岗位要求：<br>具有统计分析、数据挖掘、机器学习和AI等相关领域的学习背景或项目经验, 熟悉Online learning、Transfer learning以及强化学习的优先考虑；</p>
+<p>具有良好的编程思维和单机／分布式算法实现能力，精通至少一门主流数据编程语言（R,Python,Java,Scala等），能快速对新的idea进行实验和验证;</p>
+<p>具备良好的系统化思维和技能，了解分布式计算架构，微服务架构原理和实现，熟悉spark，Flink，TensorFlow，PyTorch等一到两个分布式计算或深度学习平台者优先;</p>
+<p>对数据分析体系有一定了解，熟悉Batch和Streaming计算框架，Lambda构建，了解OLAP，OLTP等技术者优先;</p>
+<p>具备快速学习能力，广阔的视野以及创造性思维，能结合先进技术和业务问题，创造出新的价值;</p>
+<p>在相关领域国际顶级会议或期刊上发表论文，或参加相关数据分析竞赛获奖者优先;</p>
+<p>有数据中心或者大规模分布式集群分析经验者优先</p>
+<p>目标对象：2021年应届毕业生</p>
+<p>投递邮箱：<a href="mailto:jiongzhou.ljz@alibaba-inc.com">jiongzhou.ljz@alibaba-inc.com</a>, <a href="mailto:mars.ly@alibaba-inc.com">mars.ly@alibaba-inc.com</a></p>
+<table>
+<thead>
+<tr>
+<th>wiki原文</th>
+<th>翻译</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S.M.A.R.T. (Self-Monitoring, Analysis and Reporting Technology; often written as SMART) is a monitoring system included in computer hard disk drives (HDDs), solid-state drives (SSDs),[1] and eMMC drives. Its primary function is to detect and report various indicators of drive reliability with the intent of anticipating imminent hardware failures.</td>
+<td>S.M.A.R.T.（自我监视，分析和报告技术；通常写为SMART）是计算机硬盘驱动器（HDD），固态驱动器（SSD），[1]和eMMC驱动器中包含的监视系统。 其主要功能是检测和报告驱动器可靠性的各种指标，以预期即将发生的硬件故障。</td>
+</tr>
+<tr>
+<td>When S.M.A.R.T. data indicates a possible imminent drive failure, software running on the host system may notify the user so preventive action can be taken to prevent data loss, and the failing drive can be replaced and data integrity maintained.</td>
+<td>当S.M.A.R.T. 数据表明驱动器可能即将发生故障，主机系统上运行的软件可能会通知用户，因此可以采取预防措施以防止数据丢失，并且可以更换发生故障的驱动器并维护数据完整性。</td>
+</tr>
+<tr>
+<td>——</td>
+<td>——</td>
+</tr>
+</tbody></table>
+<p>| —— | —— |</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/PAKDD/">PAKDD</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>官方说明</li>
+          
+        
+      
+    
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

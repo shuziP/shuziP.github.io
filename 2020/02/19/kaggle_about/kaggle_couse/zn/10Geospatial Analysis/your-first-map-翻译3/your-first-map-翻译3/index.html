@@ -199,15 +199,6 @@
         
         
           
-          <li class="menu-item menu-item-时间轴archives">
-
-    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section">ABOUT</a>
@@ -296,9 +287,9 @@
 <li>纽约市有足够的医院来应对机动车碰撞吗?城市的哪些地区在覆盖方面存在差距?</li>
 <li>你还可以想象波士顿的犯罪，检查加纳的医疗设施，探索欧洲的顶尖大学，追踪美国有毒化学物质的排放。</li>
 </ul>
-<p>在第一个教程中，我们将快速介绍完成这门微型课程所需的先决条件。如果你想更深入地复习，我们推荐<a href="https://www.kaggle.com/learn/pandas" target="_blank" rel="noopener">pandas微课</a>。</p>
+<p>在第一个教程中，我们将快速介绍完成这门微型课程所需的先决条件。如果你想更深入地复习，我们推荐<a href="https://www.kaggle.com/learn/pandas">pandas微课</a>。</p>
 <p>我们还将开始可视化我们的第一个地理空间数据集!</p>
-<h1 id="读取数据¶"><a href="#读取数据¶" class="headerlink" title="读取数据¶"></a>读取数据¶</h1><p>第一步是读取一些地理空间数据!为此，我们将使用<a href="http://geopandas.org/" target="_blank" rel="noopener">GeoPandas</a>库。</p>
+<h1 id="读取数据¶"><a href="#读取数据¶" class="headerlink" title="读取数据¶"></a>读取数据¶</h1><p>第一步是读取一些地理空间数据!为此，我们将使用<a href="http://geopandas.org/">GeoPandas</a>库。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br></pre></td></tr></table></figure>
 
 <p>地理空间文件有许多不同的格式, 例如 shapefile, GeoJSON, KML, and GPKG.在这门微课程中，我们不会讨论他们之间的差异，但有必要提一下:</p>
@@ -306,7 +297,7 @@
 <li>shapefile是最常见的文件类型</li>
 <li>所有这些文件类型都可以通过gpd.read_file()函数快速加载。</li>
 </ul>
-<p>下一个代码单元加载一个shapefile，其中包含关于纽约州环境保护部门管理下的森林、荒野地区和其他土地的<a href="https://www.dec.ny.gov/index.html" target="_blank" rel="noopener">信息</a>。</p>
+<p>下一个代码单元加载一个shapefile，其中包含关于纽约州环境保护部门管理下的森林、荒野地区和其他土地的<a href="https://www.dec.ny.gov/index.html">信息</a>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Read in the data</span></span><br><span class="line">full_data = gpd.read_file(<span class="string">"../input/geospatial-learn-course-data/DEC_lands/DEC_lands/DEC_lands.shp"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># View the first five rows of the data</span></span><br><span class="line">full_data.head()</span><br></pre></td></tr></table></figure>
 
 <div>
@@ -321,7 +312,7 @@
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -470,10 +461,10 @@
 <p>这是因为数据被加载到一个(GeoPandas) GeoDataFrame对象中，该对象具有(panda) DataFrame的所有功能。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(full_data)</span><br></pre></td></tr></table></figure>
 
-<pre><code>geopandas.geodataframe.GeoDataFrame</code></pre><p>例如，如果我们不打算使用所有的列，我们可以选择它们的一个子集。(要查看其他选择数据的方法，请查看<a href="https://www.kaggle.com/residentmario/indexing-selecting-assigning/" target="_blank" rel="noopener">pandas微课程</a>。)</p>
+<pre><code>geopandas.geodataframe.GeoDataFrame</code></pre><p>例如，如果我们不打算使用所有的列，我们可以选择它们的一个子集。(要查看其他选择数据的方法，请查看<a href="https://www.kaggle.com/residentmario/indexing-selecting-assigning/">pandas微课程</a>。)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = full_data.loc[:, [<span class="string">"CLASS"</span>, <span class="string">"COUNTY"</span>, <span class="string">"geometry"</span>]].copy()</span><br></pre></td></tr></table></figure>
 
-<p>我们使用value_counts()方法查看不同土地类型的列表，以及它们在数据集中出现的次数。(要查看这个(和相关的方法)，请查看Pandas micro-course的<a href="https://www.kaggle.com/residentmario/summary-functions-and-maps" target="_blank" rel="noopener">这个教程</a>。)</p>
+<p>我们使用value_counts()方法查看不同土地类型的列表，以及它们在数据集中出现的次数。(要查看这个(和相关的方法)，请查看Pandas micro-course的<a href="https://www.kaggle.com/residentmario/summary-functions-and-maps">这个教程</a>。)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># How many lands of each type are there?</span></span><br><span class="line">data.CLASS.value_counts()</span><br></pre></td></tr></table></figure>
 
 <pre><code>WILD FOREST                   965
@@ -485,7 +476,7 @@ UNCLASSIFIED                    7
 HISTORIC                        5
 PRIMITIVE BICYCLE CORRIDOR      4
 CANOE AREA                      1
-Name: CLASS, dtype: int64</code></pre><p>您还可以使用loc(和iloc)和isin来选择数据的子集。(要回顾这一点，请查看Pandas micro-course的<a href="https://www.kaggle.com/residentmario/indexing-selecting-assigning/" target="_blank" rel="noopener">这个教程</a>。)</p>
+Name: CLASS, dtype: int64</code></pre><p>您还可以使用loc(和iloc)和isin来选择数据的子集。(要回顾这一点，请查看Pandas micro-course的<a href="https://www.kaggle.com/residentmario/indexing-selecting-assigning/">这个教程</a>。)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Select lands that fall under the "WILD FOREST" or "WILDERNESS" category</span></span><br><span class="line">wild_lands = data.loc[data.CLASS.isin([<span class="string">'WILD FOREST'</span>, <span class="string">'WILDERNESS'</span>])].copy()</span><br><span class="line">wild_lands.head()</span><br></pre></td></tr></table></figure>
 
 <div>
@@ -500,7 +491,7 @@ Name: CLASS, dtype: int64</code></pre><p>您还可以使用loc(和iloc)和isin�
 
 .dataframe thead th {
     text-align: right;
-}</code></pre><p></style><p></p>
+}</code></pre><p></style></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -547,7 +538,7 @@ Name: CLASS, dtype: int64</code></pre><p>您还可以使用loc(和iloc)和isin�
 
 
 
-<p>如果您不熟悉上面的命令，建议您将此页加入书签以供参考，以便根据需要查找命令。(或者，你也可以学习<a href="https://www.kaggle.com/learn/pandas" target="_blank" rel="noopener">Pandas micro-course</a>)在创建映射之前，我们将在整个微课程中使用这些命令来理解和筛选数据。</p>
+<p>如果您不熟悉上面的命令，建议您将此页加入书签以供参考，以便根据需要查找命令。(或者，你也可以学习<a href="https://www.kaggle.com/learn/pandas">Pandas micro-course</a>)在创建映射之前，我们将在整个微课程中使用这些命令来理解和筛选数据。</p>
 <h1 id="创建您的第一个映射-¶"><a href="#创建您的第一个映射-¶" class="headerlink" title="创建您的第一个映射!¶"></a>创建您的第一个映射!¶</h1><p>我们可以使用plot()方法快速地可视化数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wild_lands.plot()</span><br></pre></td></tr></table></figure>
 
@@ -572,7 +563,7 @@ Name: geometry, dtype: object</code></pre><p>虽然这个列可以包含各种�
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f49715e8748&gt;</code></pre><p><img src="output_24_1.png" alt="png"></p>
 <p>看起来这个州的东北部是露营旅行的好地方!</p>
 <h1 id="Your-turn¶"><a href="#Your-turn¶" class="headerlink" title="Your turn¶"></a>Your turn¶</h1><p>这一开始感觉很复杂，但是您已经掌握了足够的知识来进行重要的分析。</p>
-<p>来源：<a href="https://www.kaggle.com/learn/geospatial-analysis" target="_blank" rel="noopener">https://www.kaggle.com/learn/geospatial-analysis</a></p>
+<p>来源：<a href="https://www.kaggle.com/learn/geospatial-analysis">https://www.kaggle.com/learn/geospatial-analysis</a></p>
 <p>This Notebook has been released under the Apache 2.0 open source license.（这个笔记本是在Apache 2.0开源许可下发布的。）</p>
 
     </div>
@@ -648,7 +639,7 @@ Name: geometry, dtype: object</code></pre><p>虽然这个列可以包含各种�
         
           <a href="/archives">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
@@ -669,7 +660,7 @@ Name: geometry, dtype: object</code></pre><p>虽然这个列可以包含各种�
         
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">Kategorien</span>
         </a>
       </div>

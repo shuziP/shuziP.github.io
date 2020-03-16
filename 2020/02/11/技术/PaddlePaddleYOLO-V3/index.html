@@ -222,15 +222,6 @@
         
         
           
-          <li class="menu-item menu-item-时间轴archives">
-
-    <a href="/archives/" rel="section">时间轴ARCHIVES</a>
-
-  </li>
-        
-        
-        
-          
           <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section">ABOUT</a>
@@ -339,27 +330,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>对计算机而言，能够“看到”的是图像被编码之后的数字，但它很难解高层语义概念，比如图像或者视频帧中出现目标的是人还是物体，更无法定位目标出现在图像中哪个区域。目标检测的主要目的是让计算机可以自动识别图片或者视频帧中所有目标的类别，并在该目标周围绘制边界框，标示出每个目标的位置，如 <strong>图1</strong> 所示。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/e25116d994724f83abe3bef7f033c1c89bf34e083075494bb7833947c557f4fc" width="700" div align="center""></center>
-<center><br>图1：图像分类和目标检测示意图<br></center>
-<br><br>
+        <p>对计算机而言，能够“看到”的是图像被编码之后的数字，但它很难解高层语义概念，比如图像或者视频帧中出现目标的是人还是物体，更无法定位目标出现在图像中哪个区域。目标检测的主要目的是让计算机可以自动识别图片或者视频帧中所有目标的类别，并在该目标周围绘制边界框，标示出每个目标的位置，如 <strong>图1</strong> 所示。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/e25116d994724f83abe3bef7f033c1c89bf34e083075494bb7833947c557f4fc" width = "700"  div align=center" width = "800"></center>
+<center><br>图1：图像分类和目标检测示意图</br></center>
+<br></br>
 
 <ul>
 <li>图1（a）是图像分类任务，只需识别出这是一张斑马的图片。 </li>
 <li>图1（b）是目标检测任务，不仅要识别出这是一张斑马的图片，还要标出图中斑马的位置。</li>
 </ul>
 <h1 id="目标检测发展历程"><a href="#目标检测发展历程" class="headerlink" title="目标检测发展历程"></a>目标检测发展历程</h1><a id="more"></a>
-<p>在上一节中我们学习了图像分类处理基本流程，先使用卷积神经网络提取图像特征，然后再用这些特征预测分类概率，根据训练样本标签建立起分类损失函数，开启端到端的训练，如 <strong>图2</strong> 所示。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d131c45973a244c590c3d1ee3866a694b134299542284b22b794e4ab76c4769d" width="800"></center>
-<center><br>图2：图像分类流程示意图<br></center>
-<br><br>
+<p>在上一节中我们学习了图像分类处理基本流程，先使用卷积神经网络提取图像特征，然后再用这些特征预测分类概率，根据训练样本标签建立起分类损失函数，开启端到端的训练，如 <strong>图2</strong> 所示。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d131c45973a244c590c3d1ee3866a694b134299542284b22b794e4ab76c4769d" width = "800"></center>
+<center><br>图2：图像分类流程示意图</br></center>
+<br></br>
 
 <p>但对于目标检测问题，按照 <strong>图2</strong> 的流程则行不通。因为在图像分类任务中，对整张图提取特征的过程中没能体现出不同目标之间的区别，最终也就没法分别标示出每个物体所在的位置。</p>
 <p>为了解决这个问题，结合图片分类任务取得的成功经验，我们可以将目标检测任务进行拆分。假设我们现在有某种方式可以在输入图片上生成一系列可能包含物体的区域，这些区域称为候选区域，在一张图上可以生成很多个候选区域。然后对每个候选区域，可以把它单独当成一幅图像来看待，使用图像分类模型对它进行分类，看它属于哪个类别或者背景（即不包含任何物体的类别）。</p>
-<p>上一节我们学过如何解决图像分类任务，使用卷积神经网络对一幅图像进行分类不再是一件困难的事情。那么，现在问题的关键就是如何产生候选区域？比如我们可以使用穷举法来产生候选区域，如图3所示。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/57755ac8e95a460f9262afc7c37a0db51f66027ff86c40e2967a2e22524c20a1" width="800"></center>
-<center><br>图3：候选区域<br></center>
-<br><br>
+<p>上一节我们学过如何解决图像分类任务，使用卷积神经网络对一幅图像进行分类不再是一件困难的事情。那么，现在问题的关键就是如何产生候选区域？比如我们可以使用穷举法来产生候选区域，如图3所示。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/57755ac8e95a460f9262afc7c37a0db51f66027ff86c40e2967a2e22524c20a1" width = "800"></center>
+<center><br>图3：候选区域</br></center>
+<br></br>
 
 <p>A为图像上的某个像素点，B为A右下方另外一个像素点，A、B两点可以确定一个矩形框，记作AB。</p>
 <ul>
@@ -370,12 +361,12 @@
 <p>只要我们对每个候选区域的分类足够的准确，则一定能找到跟实际物体足够接近的区域来。穷举法也许能得到正确的预测结果，但其计算量也是非常巨大的，其所生成的总的候选区域数目约为$\frac{W^2 H^2}{4}$，假设$H=W=100$，总数将会达到$2.5 \times 10^{7}$个，如此多的候选区域使得这种方法几乎没有什么实用性。但是通过这种方式，我们可以看出，假设分类任务完成的足够完美，从理论上来讲检测任务也是可以解决的，亟待解决的问题是如何设计出合适的方法来产生候选区域。</p>
 <p>科学家们开始思考，是否可以应用传统图像算法先产生候选区域，然后再用卷积神经网络对这些区域进行分类？</p>
 <ul>
-<li>2013年，<a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener">Ross Girshick</a> 等人于首次将CNN的方法应用在目标检测任务上，他们使用传统图像算法<a href="https://link.springer.com/article/10.1007/s11263-013-0620-5" target="_blank" rel="noopener">selective search</a>产生候选区域，取得了极大的成功，这就是对目标检测领域影响深远的区域卷积神经网络(R-CNN)模型。</li>
-<li>2015年，<a href="https://arxiv.org/abs/1504.08083" target="_blank" rel="noopener">Ross Girshick</a> 对此方法进行了改进，提出了Fast RCNN模型。通过将不同区域的物体共用卷积层的计算，大大缩减了计算量，提高了处理速度，而且还引入了调整目标物体位置的回归方法，进一步提高了位置预测的准确性。</li>
-<li>2015年，<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Shaoqing Ren</a> 等人提出了Faster RCNN模型，提出了RPN的方法来产生物体的候选区域，这一方法里面不再需要使用传统的图像处理算法来产生候选区域，进一步提升了处理速度。</li>
-<li>2017年，<a href="https://arxiv.org/abs/1703.06870" target="_blank" rel="noopener">Kaiming He</a> 等人于提出了Mask RCNN模型，只需要在Faster RCNN模型上添加比较少的计算量，就可以同时实现目标检测和物体实例分割两个任务。</li>
+<li>2013年，<a href="https://arxiv.org/abs/1311.2524">Ross Girshick</a> 等人于首次将CNN的方法应用在目标检测任务上，他们使用传统图像算法<a href="https://link.springer.com/article/10.1007/s11263-013-0620-5">selective search</a>产生候选区域，取得了极大的成功，这就是对目标检测领域影响深远的区域卷积神经网络(R-CNN)模型。</li>
+<li>2015年，<a href="https://arxiv.org/abs/1504.08083">Ross Girshick</a> 对此方法进行了改进，提出了Fast RCNN模型。通过将不同区域的物体共用卷积层的计算，大大缩减了计算量，提高了处理速度，而且还引入了调整目标物体位置的回归方法，进一步提高了位置预测的准确性。</li>
+<li>2015年，<a href="https://arxiv.org/abs/1506.01497">Shaoqing Ren</a> 等人提出了Faster RCNN模型，提出了RPN的方法来产生物体的候选区域，这一方法里面不再需要使用传统的图像处理算法来产生候选区域，进一步提升了处理速度。</li>
+<li>2017年，<a href="https://arxiv.org/abs/1703.06870">Kaiming He</a> 等人于提出了Mask RCNN模型，只需要在Faster RCNN模型上添加比较少的计算量，就可以同时实现目标检测和物体实例分割两个任务。</li>
 </ul>
-<p>以上都是基于R-CNN系列的著名模型，对目标检测方向的发展有着较大的影响力。此外，还有一些其他模型，比如<a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">SSD</a>、YOLO(<a href="https://arxiv.org/abs/1506.02640v5" target="_blank" rel="noopener">1</a>, <a href="https://arxiv.org/abs/1612.08242" target="_blank" rel="noopener">2</a>, <a href="https://arxiv.org/abs/1804.02767" target="_blank" rel="noopener">3</a>)、<a href="https://arxiv.org/abs/1605.06409" target="_blank" rel="noopener">R-FCN</a>等也都是目标检测领域流行的模型结构。</p>
+<p>以上都是基于R-CNN系列的著名模型，对目标检测方向的发展有着较大的影响力。此外，还有一些其他模型，比如<a href="https://arxiv.org/abs/1512.02325">SSD</a>、YOLO(<a href="https://arxiv.org/abs/1506.02640v5">1</a>, <a href="https://arxiv.org/abs/1612.08242">2</a>, <a href="https://arxiv.org/abs/1804.02767">3</a>)、<a href="https://arxiv.org/abs/1605.06409">R-FCN</a>等也都是目标检测领域流行的模型结构。</p>
 <p>R-CNN的系列算法分成两个阶段，先在图像上产生候选区域，再对候选区域进行分类并预测目标物体位置，它们通常被叫做两阶段检测算法。SSD和YOLO算法则只使用一个网络同时产生候选区域并预测出物体的类别和位置，所以它们通常被叫做单阶段检测算法。由于篇幅所限，本章将重点介绍YOLO-V3算法，并用其完成林业病虫害数据集中的昆虫检测任务，主要涵盖如下内容：</p>
 <ul>
 <li>图像检测基础概念：介绍与目标检测任相关的基本概念，包括边界框、锚框和交并比等。</li>
@@ -383,10 +374,10 @@
 <li>YOLO-V3目标检测模型：介绍算法原理，及如何应用林业病虫害数据集进行模型训练和测试。</li>
 </ul>
 <h2 id="目标检测基础概念"><a href="#目标检测基础概念" class="headerlink" title="目标检测基础概念"></a>目标检测基础概念</h2><p>在介绍目标检测算法之前，先介绍一些跟检测相关的基本概念，包括边界框、锚框和交并比等。</p>
-<h3 id="边界框（bounding-box）"><a href="#边界框（bounding-box）" class="headerlink" title="边界框（bounding box）"></a>边界框（bounding box）</h3><p>检测任务需要同时预测物体的类别和位置，因此需要引入一些跟位置相关的概念。通常使用边界框（bounding box，bbox）来表示物体的位置，边界框是正好能包含住物体的矩形框，如 <strong>图4</strong> 所示，图中3个人分别对应3个边界框。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f581e1bfd07a414596368c9c03a1b30ea115a2e30a014be68b2c26961f5c38fa" width="400" div align="center""></center>
-<center><br>图4：边界框<br></center>
-<br><br>
+<h3 id="边界框（bounding-box）"><a href="#边界框（bounding-box）" class="headerlink" title="边界框（bounding box）"></a>边界框（bounding box）</h3><p>检测任务需要同时预测物体的类别和位置，因此需要引入一些跟位置相关的概念。通常使用边界框（bounding box，bbox）来表示物体的位置，边界框是正好能包含住物体的矩形框，如 <strong>图4</strong> 所示，图中3个人分别对应3个边界框。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f581e1bfd07a414596368c9c03a1b30ea115a2e30a014be68b2c26961f5c38fa" width = "400"  div align=center"></center>
+<center><br>图4：边界框</br></center>
+<br></br>
 
 <p>通常有两种格式来表示边界框的位置：</p>
 <ol>
@@ -420,18 +411,18 @@
 <h3 id="交并比"><a href="#交并比" class="headerlink" title="交并比"></a>交并比</h3><p>上面我们画出了以点$(300, 500)$为中心，生成的三个锚框，我们可以看到锚框A1 与真实框 G1的重合度比较好。那么如何衡量这三个锚框跟真实框之间的关系呢，在检测任务中是使用交并比（Intersection of Union，IoU）作为衡量指标。这一概念来源于数学中的集合，用来描述两个集合$A$和$B$之间的关系，它等于两个集合的交集里面所包含的元素个数，除以它们的并集里面所包含的元素个数，具体计算公式如下：</p>
 <p>$$IoU = \frac{A\cap B}{A \cup B}$$</p>
 <p>我们将用这个概念来描述两个框之间的重合度。两个框可以看成是两个像素的集合，它们的交并比等于两个框重合部分的面积除以它们合并起来的面积。下图a中红色区域是两个框的重合面积，图b中蓝色区域是两个框的相并面积。用这两个面积相除即可得到它们之间的交并比，如 <strong>图5</strong> 所示。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1eaa96c6dd8149f59665d80384ba189eb9f4c9bcc5ef47a79027385cbac033a0" width="300"></center>
-<center><br>图5：交并比<br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1eaa96c6dd8149f59665d80384ba189eb9f4c9bcc5ef47a79027385cbac033a0" width = "300"></center>
+<center><br>图5：交并比</br></center>
+<br></br>
 
 
 <p>假设两个矩形框A和B的位置分别为：<br>$$A:  [x_{a1}, y_{a1}, x_{a2}, y_{a2}]$$</p>
 <p>$$B:  [x_{b1}, y_{b1}, x_{b2}, y_{b2}]$$</p>
-<p>假如位置关系如 <strong>图6</strong> 所示：<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/50bbb215ee9d4c048fd8788e2828ec7694199c6eadf746dfb9a7b83c79c17a45" width="300"></center>
-<center><br>图6：计算交并比<br></center>
-<br><br>
+<p>假如位置关系如 <strong>图6</strong> 所示：<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/50bbb215ee9d4c048fd8788e2828ec7694199c6eadf746dfb9a7b83c79c17a45" width = "300"></center>
+<center><br>图6：计算交并比</br></center>
+<br></br>
 
 <p>如果二者有相交部分，则相交部分左上角坐标为：<br>$$x_1 = max(x_{a1}, x_{b1}), \ \ \ \ \ y_1 = max(y_{a1}, y_{b1})$$</p>
 <p>相交部分右下角坐标为：<br>$$x_2 = min(x_{a2}, x_{b2}), \ \ \ \ \ y_2 = min(y_{a2}, y_{b2})$$</p>
@@ -450,10 +441,10 @@
 
 <pre><code>IoU is 0.474026443176</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算IoU，矩形框的坐标形式为xywh</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">box_iou_xywh</span><span class="params">(box1, box2)</span>:</span></span><br><span class="line">    x1min, y1min = box1[<span class="number">0</span>] - box1[<span class="number">2</span>]/<span class="number">2.0</span>, box1[<span class="number">1</span>] - box1[<span class="number">3</span>]/<span class="number">2.0</span></span><br><span class="line">    x1max, y1max = box1[<span class="number">0</span>] + box1[<span class="number">2</span>]/<span class="number">2.0</span>, box1[<span class="number">1</span>] + box1[<span class="number">3</span>]/<span class="number">2.0</span></span><br><span class="line">    s1 = box1[<span class="number">2</span>] * box1[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    x2min, y2min = box2[<span class="number">0</span>] - box2[<span class="number">2</span>]/<span class="number">2.0</span>, box2[<span class="number">1</span>] - box2[<span class="number">3</span>]/<span class="number">2.0</span></span><br><span class="line">    x2max, y2max = box2[<span class="number">0</span>] + box2[<span class="number">2</span>]/<span class="number">2.0</span>, box2[<span class="number">1</span>] + box2[<span class="number">3</span>]/<span class="number">2.0</span></span><br><span class="line">    s2 = box2[<span class="number">2</span>] * box2[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    xmin = np.maximum(x1min, x2min)</span><br><span class="line">    ymin = np.maximum(y1min, y2min)</span><br><span class="line">    xmax = np.minimum(x1max, x2max)</span><br><span class="line">    ymax = np.minimum(y1max, y2max)</span><br><span class="line">    inter_h = np.maximum(ymax - ymin, <span class="number">0.</span>)</span><br><span class="line">    inter_w = np.maximum(xmax - xmin, <span class="number">0.</span>)</span><br><span class="line">    intersection = inter_h * inter_w</span><br><span class="line"></span><br><span class="line">    union = s1 + s2 - intersection</span><br><span class="line">    iou = intersection / union</span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
 
-<p>为了直观的展示交并比的大小跟重合程度之间的关系，<strong>图7</strong> 示意了不同交并比下两个框之间的相对位置关系，从 IoU = 0.95 到 IoU = 0.<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/4befa4f120ca48a1a41986bf5542abb8ec136a1545214264bbf78e315cfb03f9" width="500"></center>
-<center><br>图7：不同交并比下两个框之间相对位置示意图<br></center>
-<br><br>
+<p>为了直观的展示交并比的大小跟重合程度之间的关系，<strong>图7</strong> 示意了不同交并比下两个框之间的相对位置关系，从 IoU = 0.95 到 IoU = 0.<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/4befa4f120ca48a1a41986bf5542abb8ec136a1545214264bbf78e315cfb03f9" width = "500"></center>
+<center><br>图7：不同交并比下两个框之间相对位置示意图</br></center>
+<br></br>
 
 <hr>
 <p><strong>问题：</strong></p>
@@ -616,7 +607,7 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.shape, gt_boxes.shape, gt_labels.shape, im_shape.shape</span><br></pre></td></tr></table></figure>
 
-<pre><code>((2, 3, 608, 608), (2, 50, 4), (2, 50), (2, 2))</code></pre><p>由于在数据预处理耗时较长，可能会成为网络训练速度的瓶颈，所以需要对预处理部分进行优化。通过使用Paddle提供的API <a href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/xmap_readers_cn.html#xmap-readers" target="_blank" rel="noopener">paddle.reader.xmap_readers</a>可以开启多线程读取数据，具体实现代码如下。</p>
+<pre><code>((2, 3, 608, 608), (2, 50, 4), (2, 50), (2, 2))</code></pre><p>由于在数据预处理耗时较长，可能会成为网络训练速度的瓶颈，所以需要对预处理部分进行优化。通过使用Paddle提供的API <a href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/xmap_readers_cn.html#xmap-readers">paddle.reader.xmap_readers</a>可以开启多线程读取数据，具体实现代码如下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="keyword">import</span> paddle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用paddle.reader.xmap_readers实现多线程读取数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multithread_loader</span><span class="params">(datadir, batch_size= <span class="number">10</span>, mode=<span class="string">'train'</span>)</span>:</span></span><br><span class="line">    cname2cid = get_insect_names()</span><br><span class="line">    records = get_annotations(cname2cid, datadir)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reader</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">            np.random.shuffle(records)</span><br><span class="line">        img_size = get_img_size(mode)</span><br><span class="line">        batch_data = []</span><br><span class="line">        <span class="keyword">for</span> record <span class="keyword">in</span> records:</span><br><span class="line">            batch_data.append((record, img_size))</span><br><span class="line">            <span class="keyword">if</span> len(batch_data) == batch_size:</span><br><span class="line">                <span class="keyword">yield</span> batch_data</span><br><span class="line">                batch_data = []</span><br><span class="line">                img_size = get_img_size(mode)</span><br><span class="line">        <span class="keyword">if</span> len(batch_data) &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">yield</span> batch_data</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(samples)</span>:</span></span><br><span class="line">        batch_data = []</span><br><span class="line">        <span class="keyword">for</span> sample <span class="keyword">in</span> samples:</span><br><span class="line">            record = sample[<span class="number">0</span>]</span><br><span class="line">            img_size = sample[<span class="number">1</span>]</span><br><span class="line">            img, gt_bbox, gt_labels, im_shape = get_img_data(record, size=img_size)</span><br><span class="line">            batch_data.append((img, gt_bbox, gt_labels, im_shape))</span><br><span class="line">        <span class="keyword">return</span> make_array(batch_data)</span><br><span class="line"></span><br><span class="line">    mapper = functools.partial(get_data, )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> paddle.reader.xmap_readers(mapper, reader, <span class="number">8</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = multithread_loader(<span class="string">'/home/aistudio/work/insects/train'</span>, batch_size=<span class="number">2</span>, mode=<span class="string">'train'</span>)</span><br></pre></td></tr></table></figure>
@@ -660,10 +651,10 @@
 <li>使用卷积神经网络提取图片特征并对候选区域的位置和类别进行预测。这样每个预测框就可以看成是一个样本，根据真实框相对它的位置和类别进行了标注而获得标签值，通过网络模型预测其位置和类别，将网络预测值和标签值进行比较，就可以建立起损失函数。</li>
 </ul>
 <p>YOLO-V3算法训练过程的流程图如 <strong>图8</strong> 所示：</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/c21075a2450c4f64a2e52d3179a95c96d065c6a84ec344bb969fd4cac22df980" width="800"></center>
-<center><br>图8：YOLO-V3算法训练流程图 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/c21075a2450c4f64a2e52d3179a95c96d065c6a84ec344bb969fd4cac22df980" width = "800"></center>
+<center><br>图8：YOLO-V3算法训练流程图 </br></center>
+<br></br>
 
 
 <ul>
@@ -681,10 +672,10 @@
 <p>$$m = \frac{640}{32} = 20$$</p>
 <p>$$n = \frac{480}{32} = 15$$</p>
 <p>如 <strong>图9</strong> 所示，将原始图像分成了20行15列小方块区域。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/2dd1cbeb53644552a8cb38f3f834dbdda5046a489465454d93cdc88d1ce65ca5" width="400"></center>
-<center><br>图9：将图片划分成多个32x32的小方块 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/2dd1cbeb53644552a8cb38f3f834dbdda5046a489465454d93cdc88d1ce65ca5" width = "400"></center>
+<center><br>图9：将图片划分成多个32x32的小方块 </br></center>
+<br></br>
 
 
 <p>YOLO-V3算法会在每个区域的中心，生成一系列锚框。为了展示方便，我们先在图中第十行第四列的小方块位置附近画出生成的锚框，如 <strong>图10</strong> 所示。</p>
@@ -692,16 +683,16 @@
 <p><strong>注意：</strong></p>
 <p>这里为了跟程序中的编号对应，最上面的行号是第0行，最左边的列号是第0列**</p>
 <hr>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/6dd42b9138364a379b6231ac2247d3cb449d612e17be4896986bca2703acbb29" width="400"></center>
-<center><br>图10：在第10行第4列的小方块区域生成3个锚框 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/6dd42b9138364a379b6231ac2247d3cb449d612e17be4896986bca2703acbb29" width = "400"></center>
+<center><br>图10：在第10行第4列的小方块区域生成3个锚框 </br></center>
+<br></br>
 
 <p><strong>图11</strong> 展示在每个区域附近都生成3个锚框，很多锚框堆叠在一起可能不太容易看清楚，但过程跟上面类似，只是需要以每个区域的中心点为中心，分别生成3个锚框。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/0880c3b5ec2d40edb476f4fcbadd87aa9f37059cd24d4a1a9d37c627ce5f618a" width="400"></center>
-<center><br>图11：在每个小方块区域生成3个锚框 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/0880c3b5ec2d40edb476f4fcbadd87aa9f37059cd24d4a1a9d37c627ce5f618a" width = "400"></center>
+<center><br>图11：在每个小方块区域生成3个锚框 </br></center>
+<br></br>
 
 
 <h3 id="生成预测框"><a href="#生成预测框" class="headerlink" title="生成预测框"></a>生成预测框</h3><p>在前面已经指出，锚框的位置都是固定好的，不可能刚好跟物体边界框重合，需要在锚框的基础上进行位置的微调以生成预测框。预测框相对于锚框会有不同的中心位置和大小，采用什么方式能产生出在锚框上面微调得到的预测框呢，我们先来考虑如何生成其中心位置坐标。</p>
@@ -725,10 +716,10 @@
 <ul>
 <li>备注：这里坐标采用xywh的格式</li>
 </ul>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f4b33522eb5a45f0804b94a5c66b76a0a2d13345d6de499399580a031b6ccc74" width="400"></center>
-<center><br>图12：生成预测框 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f4b33522eb5a45f0804b94a5c66b76a0a2d13345d6de499399580a031b6ccc74" width = "400"></center>
+<center><br>图12：生成预测框 </br></center>
+<br></br>
 
 <p>这里我们会问：当$t_x, t_y, t_w, t_h$取值为多少的时候，预测框能够跟真实框重合？为了回答问题，只需要将上面预测框坐标中的$b_x, b_y, b_h, b_w$设置为真实框的位置，即可求解出t的数值。</p>
 <p>令：<br>$$\sigma(t^<em>_x) + c_x = gt_x$$<br>$$\sigma(t^</em>_y) + c_y = gt_y$$<br>$$p_w e^{t^<em>_w} = gt_h$$<br>$$p_h e^{t^</em>_h} = gt_w$$</p>
@@ -745,10 +736,10 @@
 </li>
 </ul>
 <p>现在对于任意一个锚框，我们需要对它进行标注，也就是需要确定其对应的objectness, $(t_x, t_y, t_w, t_h)$和label，下面将分别讲述如何确定这三个标签的值。</p>
-<h4 id="标注锚框是否包含物体的objectness标签"><a href="#标注锚框是否包含物体的objectness标签" class="headerlink" title="标注锚框是否包含物体的objectness标签"></a>标注锚框是否包含物体的objectness标签</h4><p>如 <strong>图13</strong> 所示，这里一共有3个目标，以最左边的人像为例，其真实框是$(40.93, 141.1, 186.06, 374.63)$。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f21679e68d2b496698ed788a16d4ea2e5bc6f82b253a44ef9508b6a4fc9b6be4" width="600"></center>
-<center><br>图13：选出与真实框中心位于同一区域的锚框 <br></center>
-<br><br>
+<h4 id="标注锚框是否包含物体的objectness标签"><a href="#标注锚框是否包含物体的objectness标签" class="headerlink" title="标注锚框是否包含物体的objectness标签"></a>标注锚框是否包含物体的objectness标签</h4><p>如 <strong>图13</strong> 所示，这里一共有3个目标，以最左边的人像为例，其真实框是$(40.93, 141.1, 186.06, 374.63)$。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/f21679e68d2b496698ed788a16d4ea2e5bc6f82b253a44ef9508b6a4fc9b6be4" width = "600"></center>
+<center><br>图13：选出与真实框中心位于同一区域的锚框 </br></center>
+<br></br>
 
 <p>真实框的中心点坐标是：</p>
 <p>$$center_x = 40.93 + 186.06 / 2 = 133.96$$</p>
@@ -757,10 +748,10 @@
 <p>$$ j = 328.42 / 32 = 10.263125$$</p>
 <p>它落在了第10行第4列的小方块内，如图(b)所示。此小方块区域可以生成3个不同形状的锚框，其在图上的编号和大小分别是$A_1(116, 90), A_2(156, 198), A_3(373, 326)$。</p>
 <p>用这3个不同形状的锚框跟真实框计算IoU，选出IoU最大的锚框。这里为了简化计算，只考虑锚框的形状，不考虑其跟真实框中心之间的偏移，具体计算结果如 <strong>图14</strong> 所示。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/0487a67fe8704d959b7fd008e52b3942f9441f29d8e94481839ac5f209c538b3" width="600"></center>
-<center><br>图14：选出与真实框与锚框的IoU <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/0487a67fe8704d959b7fd008e52b3942f9441f29d8e94481839ac5f209c538b3" width = "600"></center>
+<center><br>图14：选出与真实框与锚框的IoU </br></center>
+<br></br>
 
 <p>其中跟真实框IoU最大的是锚框$A_3$，形状是$(373, 326)$，将它所对应的预测框的objectness标签设置为1，其所包括的物体类别就是真实框里面的物体所属类别。</p>
 <p>依次可以找出其他几个真实框对应的IoU最大的锚框，然后将它们的预测框的objectness标签也都设置为1。这里一共有$20 \times 15 \times 3 = 900$个锚框，只有3个预测框会被标注为正。</p>
@@ -777,10 +768,10 @@
 <p>$$t^*_h = log(\frac{gt_h}{p_h})$$</p>
 <p>如果$(t_x, t_y, t_h, t_w)$是网络预测的输出值，将$(d_x^<em>, d_y^</em>, t_w^<em>, t_h^</em>)$作为$(\sigma(t_x), \sigma(t_y), t_h, t_w)$的目标值，以它们之间的差距作为损失函数，则可以建立起一个回归问题，通过学习网络参数，使得$t$足够接近$t^*$，从而能够求解出预测框的位置。</p>
 <h4 id="标注锚框包含物体类别的标签"><a href="#标注锚框包含物体类别的标签" class="headerlink" title="标注锚框包含物体类别的标签"></a>标注锚框包含物体类别的标签</h4><p>对于objectness=1的锚框，需要确定其具体类别。正如上面所说，objectness标注为1的锚框，会有一个真实框跟它对应，该锚框所属物体类别，即是其所对应的真实框包含的物体类别。这里使用one-hot向量来表示类别标签label。比如一共有10个分类，而真实框里面包含的物体类别是第2类，则label为$(0,1,0,0,0,0,0,0,0,0)$</p>
-<p>对上述步骤进行总结，标注的流程如 <strong>图15</strong> 所示。<br><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/b7b9be40003947aa8bff8e72b84ee15033c7b3b1b61043eeb9b9c185aa83a210" width="720"></center>
-<center><br>图15：标注流程示意图 <br></center>
-<br><br>
+<p>对上述步骤进行总结，标注的流程如 <strong>图15</strong> 所示。<br><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/b7b9be40003947aa8bff8e72b84ee15033c7b3b1b61043eeb9b9c185aa83a210" width = "720"></center>
+<center><br>图15：标注流程示意图 </br></center>
+<br></br>
 
 <p>通过这种方式，我们在每个小方块区域都生成了一系列的锚框作为候选区域，并且根据图片上真实物体的位置，标注出了每个候选区域对应的objectness标签、位置需要调整的幅度以及包含的物体所属的类别。位置需要调整的幅度由4个变量描述$(t_x, t_y, t_w, t_h)$，objectness标签需要用一个变量描述$obj$，描述所属类别的变量长度等于类别数C。</p>
 <p>对于每个锚框，模型需要预测输出$(t_x, t_y, t_w, t_h, P_{obj}, P_1, P_2,… , P_C)$，其中$P_{obj}$是锚框是否包含物体的概率，$P_1, P_2,… , P_C$则是锚框包含的物体属于每个类别的概率。接下来让我们一起学习如何通过卷积神经网络输出这样的预测值。</p>
@@ -799,10 +790,10 @@
 </ul>
 <h2 id="卷积神经网络提取特征"><a href="#卷积神经网络提取特征" class="headerlink" title="卷积神经网络提取特征"></a>卷积神经网络提取特征</h2><p>在上一节图像分类的课程中，我们已经学习过了通过卷积神经网络提取图像特征。通过连续使用多层卷积和池化等操作，能得到语义含义更加丰富的特征图。在检测问题中，也使用卷积神经网络逐层提取图像特征，通过最终的输出特征图来表征物体位置和类别等信息。</p>
 <p>YOLO V3算法使用的骨干网络是Darknet53。Darknet53网络的具体结构如 <strong>图16</strong> 所示，在ImageNet图像分类任务上取得了很好的成绩。在检测任务中，将图中C0后面的平均池化、全连接层和Softmax去掉，保留从输入到C0部分的网络结构，作为检测模型的基础网络结构，也称为骨干网络。YOLO V3模型会在骨干网络的基础上，再添加检测相关的网络模块。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d59dd9da1c494016accd40c8f0a72a9908f06c5d2d9b42c4aaad815c14d4c8a1" width="400"></center>
-<center><br>图16：Darknet53网络结构 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d59dd9da1c494016accd40c8f0a72a9908f06c5d2d9b42c4aaad815c14d4c8a1" width = "400"></center>
+<center><br>图16：Darknet53网络结构 </br></center>
+<br></br>
 
 <p>下面的程序是Darknet53骨干网络的实现代码，这里将上图中C0、C1、C2所表示的输出数据取出，并查看它们的形状分别是，$C0 [1, 1024, 20, 20]$，$C1 [1, 512, 40, 40]$，$C2 [1, 256, 80, 80]$。</p>
 <ul>
@@ -828,10 +819,10 @@
 <p>$$[K(5 + C)] \times m \times n $$</p>
 <p>还有更重要的一点是网络输出必须要能区分出小方块区域的位置来，不能直接将特征图连接一个输出大小为$[K(5 + C)] \times m \times n$的全连接层。</p>
 <h3 id="建立输出特征图与预测框之间的关联"><a href="#建立输出特征图与预测框之间的关联" class="headerlink" title="建立输出特征图与预测框之间的关联"></a>建立输出特征图与预测框之间的关联</h3><p>现在观察特征图，经过多次卷积核池化之后，其步幅stride=32，$640 \times 480$大小的输入图片变成了$20\times15$的特征图；而小方块区域的数目正好是$20\times15$，也就是说可以让特征图上每个像素点分别跟原图上一个小方块区域对应。这也是为什么我们最开始将小方块区域的尺寸设置为32的原因，这样可以巧妙的将小方块区域跟特征图上的像素点对应起来，解决了空间位置的对应关系。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/93e251bb309b4bb7a2031466ac62647089dbb280f2e84d5aaa468a9944f4654c" width="400"></center>
-<center><br>图17：特征图C0与小方块区域形状对比 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/93e251bb309b4bb7a2031466ac62647089dbb280f2e84d5aaa468a9944f4654c" width = "400"></center>
+<center><br>图17：特征图C0与小方块区域形状对比 </br></center>
+<br></br>
 
 <p>下面需要将像素点$(i,j)$与第i行第j列的小方块区域所需要的预测值关联起来，每个小方块区域产生K个预测框，每个预测框需要$(5 + C)$个实数预测值，则每个像素点相对应的要有$K(5 + C)$个实数。为了解决这一问题，对特征图进行多次卷积，并将最终的输出通道数设置为$K(5 + C)$，即可将生成的特征图与每个预测框所需要的预测值巧妙的对应起来。</p>
 <p>骨干网络的输出特征图是C0，下面的程序是对C0进行多次卷积以得到跟预测框相关的特征图P0。</p>
@@ -840,10 +831,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">NUM_ANCHORS = <span class="number">3</span></span><br><span class="line">NUM_CLASSES = <span class="number">7</span></span><br><span class="line">num_filters=NUM_ANCHORS * (NUM_CLASSES + <span class="number">5</span>)</span><br><span class="line"><span class="keyword">with</span> fluid.dygraph.guard():</span><br><span class="line">    backbone = DarkNet53_conv_body(<span class="string">'yolov3_backbone'</span>, is_test=<span class="literal">False</span>)</span><br><span class="line">    detection = YoloDetectionBlock(<span class="string">'detection'</span>, channel=<span class="number">512</span>, is_test=<span class="literal">False</span>)</span><br><span class="line">    conv2d_pred = Conv2D(<span class="string">'out_pred'</span>, num_filters=num_filters,  filter_size=<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    x = np.random.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">640</span>, <span class="number">640</span>).astype(<span class="string">'float32'</span>)</span><br><span class="line">    x = to_variable(x)</span><br><span class="line">    C0, C1, C2 = backbone(x)</span><br><span class="line">    route, tip = detection(C0)</span><br><span class="line">    P0 = conv2d_pred(tip)</span><br><span class="line">    </span><br><span class="line">    print(P0.shape)</span><br></pre></td></tr></table></figure>
 
 <pre><code>[1L, 36L, 20L, 20L]</code></pre><p>如上面的代码所示，可以由特征图C0生成特征图P0，P0的形状是$[1, 36, 20, 20]$。每个小方块区域生成的锚框或者预测框的数量是3，物体类别数目是7，每个区域需要的预测值个数是$3 \times (5 + 7) = 36$，正好等于P0的输出通道数。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/7a3bcb1ca5cc4def9d93749bd963b402bc97568e22d24bd2855b6844db0c450b" width="800"></center>
-<center><br>图18：特征图P0与候选区域的关联 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/7a3bcb1ca5cc4def9d93749bd963b402bc97568e22d24bd2855b6844db0c450b" width = "800"></center>
+<center><br>图18：特征图P0与候选区域的关联 </br></center>
+<br></br>
 
 <p>将$P0[t, 0:12, i, j]$与输入的第t张图片上小方块区域$(i, j)$第1个预测框所需要的12个预测值对应，$P0[t, 12:24, i, j]$与输入的第t张图片上小方块区域$(i, j)$第2个预测框所需要的12个预测值对应，$P0[t, 24:36, i, j]$与输入的第t张图片上小方块区域$(i, j)$第3个预测框所需要的12个预测值对应。</p>
 <p>$P0[t, 0:4, i, j]$与输入的第t张图片上小方块区域$(i, j)$第1个预测框的位置对应，$P0[t, 4, i, j]$与输入的第t张图片上小方块区域$(i, j)$第1个预测框的objectness对应，$P0[t, 5:12, i, j]$与输入的第t张图片上小方块区域$(i, j)$第1个预测框的类别对应。</p>
@@ -906,10 +897,10 @@ loss_location = loss_location_x + loss_location_y + loss_location_w + loss_locat
 <pre><code>array([623.6282], dtype=float32)</code></pre><p>上面的程序计算出了总的损失函数，看到这里，读者已经了解到了YOLO-V3算法的大部分内容，包括如何生成锚框、给锚框打上标签、通过卷积神经网络提取特征、将输出特征图跟预测框相关联、建立起损失函数。</p>
 <h2 id="多尺度检测"><a href="#多尺度检测" class="headerlink" title="多尺度检测"></a>多尺度检测</h2><p>目前我们计算损失函数是在特征图P0的基础上进行的，它的步幅stride=32。特征图的尺寸比较小，像素点数目比较少，每个像素点的感受野很大，具有非常丰富的高层级语义信息，可能比较容易检测到较大的目标。为了能够检测到尺寸较小的那些目标，需要在尺寸较大的特征图上面建立预测输出。如果我们在C2或者C1这种层级的特征图上直接产生预测输出，可能面临新的问题，它们没有经过充分的特征提取，像素点包含的语义信息不够丰富，有可能难以提取到有效的特征模式。在目标检测中，解决这一问题的方式是，将高层级的特征图尺寸放大之后跟低层级的特征图进行融合，得到的新特征图既能包含丰富的语义信息，又具有较多的像素点，能够描述更加精细的结构。</p>
 <p>具体的网络实现方式如 <strong>图19</strong> 所示：</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1ec38428c95d4ab4a133dd4262f130eddeee0befa6dd40f599b9ce562f442685" width="800"></center>
-<center><br>图19：生成多层级的输出特征图P0、P1、P2 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1ec38428c95d4ab4a133dd4262f130eddeee0befa6dd40f599b9ce562f442685" width = "800"></center>
+<center><br>图19：生成多层级的输出特征图P0、P1、P2 </br></center>
+<br></br>
 
 <p>YOLO-V3在每个区域的中心位置产生3个锚框，在3个层级的特征图上产生锚框的大小分别为P2 [(10×13),(16×30),(33×23)]，P1 [(30×61),(62×45),(59× 119)]，P0[(116 × 90), (156 × 198), (373 × 326]。越往后的特征图上用到的锚框尺寸也越大，能捕捉到大尺寸目标的信息；越往前的特征图上锚框尺寸越小，能捕捉到小尺寸目标的信息。</p>
 <p>因为有多尺度的检测，所以需要对上面的代码进行较大的修改，而且实现过程也略显繁琐，所以推荐大家直接使用Paddle提供的API fluid.layers.yolov3_loss，其具体说明如下：</p>
@@ -942,19 +933,19 @@ loss_location = loss_location_x + loss_location_y + loss_location_w + loss_locat
 </li>
 </ul>
 <p>将三个层级的特征图与对应锚框之间的标签关联起来，并建立损失函数，总的损失函数等于三个层级的损失函数相加。通过极小化损失函数，可以开启端到端的训练过程。</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d0bf0309b11944109b3b9d38280ffcf3e3921fe5a3714c3ebfbff64fc76f0dc7" width="800"></center>
-<center><br>图20：端到端训练流程 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d0bf0309b11944109b3b9d38280ffcf3e3921fe5a3714c3ebfbff64fc76f0dc7" width = "800"></center>
+<center><br>图20：端到端训练流程 </br></center>
+<br></br>
 
 <p>训练过程的具体实现代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############# 这段代码在本地机器上运行请慎重，容易造成死机#######################</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> paddle</span><br><span class="line"><span class="keyword">import</span> paddle.fluid <span class="keyword">as</span> fluid</span><br><span class="line"></span><br><span class="line">ANCHORS = [<span class="number">10</span>, <span class="number">13</span>, <span class="number">16</span>, <span class="number">30</span>, <span class="number">33</span>, <span class="number">23</span>, <span class="number">30</span>, <span class="number">61</span>, <span class="number">62</span>, <span class="number">45</span>, <span class="number">59</span>, <span class="number">119</span>, <span class="number">116</span>, <span class="number">90</span>, <span class="number">156</span>, <span class="number">198</span>, <span class="number">373</span>, <span class="number">326</span>]</span><br><span class="line"></span><br><span class="line">ANCHOR_MASKS = [[<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]]</span><br><span class="line"></span><br><span class="line">IGNORE_THRESH = <span class="number">.7</span></span><br><span class="line">NUM_CLASSES = <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_lr</span><span class="params">(base_lr = <span class="number">0.0001</span>, lr_decay = <span class="number">0.1</span>)</span>:</span></span><br><span class="line">    bd = [<span class="number">10000</span>, <span class="number">20000</span>]</span><br><span class="line">    lr = [base_lr, base_lr * lr_decay, base_lr * lr_decay * lr_decay]</span><br><span class="line">    learning_rate = fluid.layers.piecewise_decay(boundaries=bd, values=lr)</span><br><span class="line">    <span class="keyword">return</span> learning_rate</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    TRAINDIR = <span class="string">'/home/aistudio/work/insects/train'</span></span><br><span class="line">    TESTDIR = <span class="string">'/home/aistudio/work/insects/test'</span></span><br><span class="line">    VALIDDIR = <span class="string">'/home/aistudio/work/insects/val'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> fluid.dygraph.guard():</span><br><span class="line">        model = YOLOv3(<span class="string">'yolov3'</span>, num_classes = NUM_CLASSES, is_train=<span class="literal">True</span>)  <span class="comment">#创建模型</span></span><br><span class="line">        learning_rate = get_lr()</span><br><span class="line">        opt = fluid.optimizer.Momentum(</span><br><span class="line">                     learning_rate=learning_rate,</span><br><span class="line">                     momentum=<span class="number">0.9</span>,</span><br><span class="line">                     regularization=fluid.regularizer.L2Decay(<span class="number">0.0005</span>))  <span class="comment">#创建优化器</span></span><br><span class="line"></span><br><span class="line">        train_loader = multithread_loader(TRAINDIR, batch_size= <span class="number">10</span>, mode=<span class="string">'train'</span>)  <span class="comment">#创建训练数据读取器</span></span><br><span class="line">        valid_loader = multithread_loader(VALIDDIR, batch_size= <span class="number">10</span>, mode=<span class="string">'valid'</span>)  <span class="comment">#创建验证数据读取器</span></span><br><span class="line"></span><br><span class="line">        MAX_EPOCH = <span class="number">200</span></span><br><span class="line">        <span class="keyword">for</span> epoch <span class="keyword">in</span> range(MAX_EPOCH):</span><br><span class="line">            <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(train_loader()):</span><br><span class="line">                img, gt_boxes, gt_labels, img_scale = data</span><br><span class="line">                gt_scores = np.ones(gt_labels.shape).astype(<span class="string">'float32'</span>)</span><br><span class="line">                gt_scores = to_variable(gt_scores)</span><br><span class="line">                img = to_variable(img)</span><br><span class="line">                gt_boxes = to_variable(gt_boxes)</span><br><span class="line">                gt_labels = to_variable(gt_labels)</span><br><span class="line">                outputs = model(img)  <span class="comment">#前向传播，输出[P0, P1, P2]</span></span><br><span class="line">                loss = model.get_loss(outputs, gt_boxes, gt_labels, gtscore=gt_scores,</span><br><span class="line">                                      anchors = ANCHORS,</span><br><span class="line">                                      anchor_masks = ANCHOR_MASKS,</span><br><span class="line">                                      ignore_thresh=IGNORE_THRESH,</span><br><span class="line">                                      use_label_smooth=<span class="literal">False</span>)        <span class="comment"># 计算损失函数</span></span><br><span class="line"></span><br><span class="line">                loss.backward()     <span class="comment"># 反向传播计算梯度</span></span><br><span class="line">                opt.minimize(loss)  <span class="comment"># 更新参数</span></span><br><span class="line">                model.clear_gradients()</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">1</span> == <span class="number">0</span>:</span><br><span class="line">                    timestring = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>,time.localtime(time.time()))</span><br><span class="line">                    print(<span class="string">'&#123;&#125;[TRAIN]epoch &#123;&#125;, iter &#123;&#125;, output loss: &#123;&#125;'</span>.format(timestring, epoch, i, loss.numpy()))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># save params of model</span></span><br><span class="line">            <span class="keyword">if</span> (epoch % <span class="number">5</span> == <span class="number">0</span>) <span class="keyword">or</span> (epoch == MAX_EPOCH <span class="number">-1</span>):</span><br><span class="line">                fluid.save_dygraph(model.state_dict(), <span class="string">'yolo_epoch&#123;&#125;'</span>.format(epoch))</span><br><span class="line">                </span><br><span class="line">            <span class="comment"># 每个epoch结束之后在验证集上进行测试</span></span><br><span class="line">            model.eval()</span><br><span class="line">            <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(valid_loader()):</span><br><span class="line">                img, gt_boxes, gt_labels, img_scale = data</span><br><span class="line">                gt_scores = np.ones(gt_labels.shape).astype(<span class="string">'float32'</span>)</span><br><span class="line">                gt_scores = to_variable(gt_scores)</span><br><span class="line">                img = to_variable(img)</span><br><span class="line">                gt_boxes = to_variable(gt_boxes)</span><br><span class="line">                gt_labels = to_variable(gt_labels)</span><br><span class="line">                outputs = model(img)</span><br><span class="line">                loss = model.get_loss(outputs, gt_boxes, gt_labels, gtscore=gt_scores,</span><br><span class="line">                                      anchors = ANCHORS,</span><br><span class="line">                                      anchor_masks = ANCHOR_MASKS,</span><br><span class="line">                                      ignore_thresh=IGNORE_THRESH,</span><br><span class="line">                                      use_label_smooth=<span class="literal">False</span>)</span><br><span class="line">                <span class="keyword">if</span> i % <span class="number">1</span> == <span class="number">0</span>:</span><br><span class="line">                    timestring = time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>,time.localtime(time.time()))</span><br><span class="line">                    print(<span class="string">'&#123;&#125;[VALID]epoch &#123;&#125;, iter &#123;&#125;, output loss: &#123;&#125;'</span>.format(timestring, epoch, i, loss.numpy()))</span><br><span class="line">            model.train()</span><br></pre></td></tr></table></figure>
 
 <h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>预测过程流程 <strong>图21</strong> 如下所示：</p>
-<p><br><br></p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/14ebf91897ea4d5787dfaaefe9e3030f0e6f704eec134440b4c495f74ab49003" width="600"></center>
-<center><br>图21：端到端训练流程 <br></center>
-<br><br>
+<p><br></br></p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/14ebf91897ea4d5787dfaaefe9e3030f0e6f704eec134440b4c495f74ab49003" width = "600"></center>
+<center><br>图21：端到端训练流程 </br></center>
+<br></br>
 
 <p>预测过程可以分为两步：</p>
 <ol>
@@ -1112,7 +1103,7 @@ loss_location = loss_location_x + loss_location_y + loss_location_w + loss_locat
         
           <a href="/archives">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">Artikel</span>
         </a>
       </div>
@@ -1133,7 +1124,7 @@ loss_location = loss_location_x + loss_location_y + loss_location_w + loss_locat
         
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">Kategorien</span>
         </a>
       </div>

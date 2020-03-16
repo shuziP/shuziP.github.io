@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="数组（Array）。 数组的内存模型 1.一维数组 在计算机科学中，数组可以被定义为是一组被保存在连续存储空间中，并且具有相同类型的数据元素集合。而数组中的每一个元素都可以通过自身的索引（Index）来进行访问。 以 Java 语言中的一个例子来说明一下数组的内存模型，当定义了一个拥有 5 个元素的 int 数组后，。 1int[] data = new int[5];  通过上面这段声明，计算机">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/草稿/数据结构/1数组内存模型.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="数组（Array）。 数组的内存模型 1.一维数组 在计算机科学中，数组可以被定义为是一组被保存在连续存储空间中，并且具有相同类型的数据元素集合。而数组中的每一个元素都可以通过自身的索引（Index）来进行访问。 以 Java 语言中的一个例子来说明一下数组的内存模型，当定义了一个拥有 5 个元素的 int 数组后，。 1int[] data = new int[5];  通过上面这段声明，计算机">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/Users/shuzip/Documents/test/source/%E8%8D%89%E7%A8%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/png/1%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841.png">
+<meta property="og:updated_time" content="2020-03-08T05:22:15.254Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="数组（Array）。 数组的内存模型 1.一维数组 在计算机科学中，数组可以被定义为是一组被保存在连续存储空间中，并且具有相同类型的数据元素集合。而数组中的每一个元素都可以通过自身的索引（Index）来进行访问。 以 Java 语言中的一个例子来说明一下数组的内存模型，当定义了一个拥有 5 个元素的 int 数组后，。 1int[] data = new int[5];  通过上面这段声明，计算机">
+<meta name="twitter:image" content="https://github.com/Users/shuzip/Documents/test/source/%E8%8D%89%E7%A8%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/png/1%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841.png">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/草稿/数据结构/1数组内存模型">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/数据结构/">数据结构</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>1数组内存模型</li>
+          
+        
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <p>数组（Array）。</p>
+<p>数组的内存模型</p>
+<h2 id="1-一维数组"><a href="#1-一维数组" class="headerlink" title="1.一维数组"></a>1.一维数组</h2><p> 在计算机科学中，数组可以被定义为是一组被保存在连续存储空间中，并且具有相同类型的数据元素集合。而数组中的每一个元素都可以通过自身的索引（Index）来进行访问。</p>
+<p>以 Java 语言中的一个例子来说明一下数组的内存模型，当定义了一个拥有 5 个元素的 int 数组后，。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+<p>通过上面这段声明，计算机会在内存中分配一段连续的内存空间给这个 data 数组。现在假设在一个 32 位的机器上运行这段程序，Java 的 int 类型数据占据了 4 个字节的空间，同时也假设计算机分配的地址是从 0x80000000 开始的，整个 data 数组在计算机内存中分配的模型如下图所示。<br><img src="/Users/shuzip/Documents/test/source/%E8%8D%89%E7%A8%BF/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/png/1%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841.png" alt="数据结构1">（图一）</p>
+<p>这种分配连续空间的内存模型同时也揭示了数组在数据结构中的另外一个特性，即随机访问（Random Access）。随机访问这个概念在计算机科学中被定义为：<strong>可以用同等的时间访问到一组数据中的任意一个元素</strong>。这个特性除了和连续的内存空间模型有关以外，其实也和数组如何通过索引访问到特定的元素有关。</p>
+<p>在访问数组中的第一个元素时，程序一般都是表达成以下这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，数组的第一个元素是通过索引“0”来进行访问的，第二个元素是通过索引“1”来进行访问的，……，<strong>这种从 0 开始进行索引的编码方式被称为是“Zero-based Indexing”</strong>。当然，在计算机世界中也存在着其他的索引编码方式，像 Visual Basic 中的某些函数索引是采用 1-based Indexing 的，也就是说第一个元素是通过“1”来获取的，</p>
+<p>我们回到数组中第一个元素通过索引“0”来进行访问的问题上来，之所以采取这样的索引方式，原因在于，获取数组元素的方式是按照以下的公式进行获取的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_address + index（索引）× data_size（数据类型大小）</span><br></pre></td></tr></table></figure>
+
+<p>索引在这里可以看作是一个偏移量（Offset），还是以上面的例子来进行说明。</p>
+<p>（图二）</p>
+<p>data 这个数组被分配到的起始地址是 0x80000000，是因为 int 类型数据占据了 4 个字节的空间，如果我们要访问第 5 个元素 data[4] 的时候，按照上面的公式，只需要取得 0x80000000 + 4 × 4 = 0x80000010 这个地址的内容就可以了。<strong>随机访问的背后原理其实也就是利用了这个公式达到了同等的时间访问到一组数据中的任意元素</strong>。</p>
+<h2 id="2-二维数组"><a href="#2-二维数组" class="headerlink" title="2.二维数组"></a>2.二维数组</h2><p>上面所提到的数组是属于一维数组的范畴，我们平时可能还会听到一维数组的其他叫法，例如，向量（Vector）或者表（Table）。因为在数学上，二维数组可以很好地用来表达矩阵（Matrix）这个概念，所以很多时候我们又会将矩阵或者二维数组这种称呼交替使用。</p>
+<p>如果我们按照下面的方式来声明一个二维数组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] data = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p>在面试中，如果我们知道了数组的起始地址，在基于上面的二维数组声明的前提下，data[0][1] 这个元素的内存地址是多少呢？标准的答案其实应该是“无法确定”。什么？标准答案是无法确定，别着急，因为这个问题的答案其实和二维数组在内存中的寻址方式有关。而这其实涉及到计算机内存到底是以行优先（Row-Major Order）还是以列优先（Column-Major Order）存储的。</p>
+<p> 假设现在有一个二维数组，如下图所示<br> （图三）</p>
+<p> 下面我们来一起看看行优先或列优先的内存模型会造成什么样的区别。</p>
+<p>（1）行优先</p>
+<p>行优先的内存模型保证了每一行的每个相邻元素都保存在了相邻的连续内存空间中，对于上面的例子，这个二维数组的内存模型如下图所示，假设起始地址是 0x80000000：<br>（图四）</p>
+<p>可以看到，在二维数组的每一行中，每个相邻元素都保存在了相邻的连续内存里。</p>
+<p>在以行优先存储的内存模型中，假设我们要访问 data[i][j] 里的元素，获取数组元素的方式是按照以下的公式进行获取的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_address + data_size × (i × number_of_column + j)</span><br></pre></td></tr></table></figure>
+
+<p>回到一开始的问题里，当我们访问 data[0][1] 这个值时，可以套用上面的公式，其得到的值，就是我们要找的 0x80000004 地址的值，也是就 2。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x80000000 + 4 × (0 × 3 + 1) = 0x80000004</span><br></pre></td></tr></table></figure>
+
+<p>（图五）</p>
+<p>（2）列优先</p>
+<p>列优先的内存模型保证了每一列的每个相邻元素都保存在了相邻的连续内存中，对于上面的例子，这个二维数组的内存模型如下图所示，我们同样假设起始地址是 0x80000000：<br>（图六）</p>
+<p>可以看到，在二维数组的每一列中，每个相邻元素都保存在了相邻的连续内存里。</p>
+<p>在以列优先存储的内存模型中，假设我们要访问 data[i][j] 里的元素，获取数组元素的方式是按照以下的公式进行获取的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_address + data_size × (i + number_of_row × j)</span><br></pre></td></tr></table></figure>
+
+<p>当我们访问 data[0][1] 这个值时，可以套用上面的公式，其得到的值，就是我们要找的 0x80000008 地址的值，同样也是 2。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x80000000 + 4 × (0 + 2×1) = 0x80000008</span><br></pre></td></tr></table></figure>
+
+<p>（图七）</p>
+<p>所以回到一开始的那个面试问题里，行优先还是列优先存储方式会造成 data[0][1] 元素的内存地址不一样。</p>
+<h3 id="3-多维数组"><a href="#3-多维数组" class="headerlink" title="3.多维数组"></a>3.多维数组</h3><p>多维数组其实本质上和前面介绍的一维数组和二维数组是一样的。如果我们按照下面的方式来声明一个三维数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int[][][] data = new int[2][3][4];</span><br></pre></td></tr></table></figure>
+
+<p>则可以把这个声明想象成声明了两个 int[3][4] 这样的二维数组，对于多维数组则可以以此类推。下面我将把行优先和列优先的内存寻址计算方式列出来，若感兴趣的话可以将上面所举的二维数组例子套入公式，自行验证一下。</p>
+<p>假设我们声明了一个 data[S1][S2][S3]…..[Sn] 的多维数组，如果我要访问 data[D1][D2][D3]…..[Dn] 的元素，内存寻址计算方式将按照如下方式寻址：</p>
+<p>行优先</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_address + data_size × (Dn + Sn × (Dn-1 + Sn-1 × (Dn-2 + Sn-2 × (... + S2 × D1)...)))</span><br></pre></td></tr></table></figure>
+
+<p>列优先</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_address + data_size × (D1 + (S1 × (D2 + S2 × (D3 + S3 × (... + Sn-1 × Dn)...)))</span><br></pre></td></tr></table></figure>
+
+<p>虽然行优先或是列优先这种内存模型对于我们工程师来说是透明的，但是如果我们掌握好了哪种高级语言是采用哪种内存模型的话，这就对于我们来说是很有用的。</p>
+<p>CPU 在读取内存数据的时候，通常会有一个 CPU 缓存策略。也就是说，在 CPU 读取程序指定地址的数值时，<strong>CPU 会把和它地址相邻的一些数据也一并读取并放到更高一级的缓存中</strong>，比如 L1 或者 L2 缓存。当数据存放在这种缓存上的时候，读取的速度有可能会比直接从内存上读取的速度快 10 倍以上。</p>
+<p>如果知道了数据存放的内存模型是行优先的话，在设计数据结构的时候，会更倾向于读取每一行上的数据，因为每一行的数据在内存中都是保存在相邻位置的，它们更有可能被一起读取到 CPU 缓存中；反之，我们更倾向于读取每一列上的数据。</p>
+<p>那高级语言中有哪些是行优先又有哪些是列优先呢？我们常用的 C/C++ 和 Objective-C 都是行优先的内存模型，而 Fortran 或者 Matlab 则是列优先的内存模型。</p>
+<p><strong>“高效”的访问与“低效”的插入删除</strong></p>
+<p>从前面的数组内存模型的学习中，我们知道了访问一个数组中的元素采用的是随机访问的方式，只需要按照上面讲到的寻址方式来获取相应位置的数值便可，<strong>所以访问数组元素的时间复杂度是 O(1)。</strong></p>
+<p>对于保存<strong>基本类型（Primitive Type）</strong>的数组来说，它们的内存大小在一开始就已经确定好了，我们称它为<strong>静态数组（Static Array）</strong>。静态数组的大小是无法改变的，所以我们无法对这种数组进行插入或者删除操作。但是在使用高级语言的时候，比如 Java，我们知道 Java 中的 ArrayList 这种 Collection 是提供了像 add 和 remove 这样的 API 来进行插入和删除操作，这样的数组可以称之为<strong>动态数组（Dynamic Array）</strong>。</p>
+<p>我们来一起看看 add 和 remove 函数在 Java Openjdk-jdk11 中的源码，一起分析它们的时间复杂度。</p>
+<p>在 Java Collection 中，底层的数据结构其实还是使用了数组，一般在初始化的时候会分配一个比我们在初始化时设定好的大小更大的空间，以方便以后进行增加元素的操作。</p>
+<p>假设所有的元素都保存在 elementData[] 这个数组中，add 函数的主要时间复杂度来自于以下源码片段。</p>
+<h3 id="1-add-int-index-E-element-函数源码"><a href="#1-add-int-index-E-element-函数源码" class="headerlink" title="1.add(int index, E element) 函数源码"></a>1.add(int index, E element) 函数源码</h3><p>首先来看看 add(int index, E element) 这个函数的源码。 (点击这里查看源代码)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    System.arraycopy(elementData, index,</span><br><span class="line">                     elementData, index + <span class="number">1</span>,</span><br><span class="line">                     s - index);</span><br><span class="line">    elementData[index] = element;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，add 函数调用了一个 System.arraycopy 的函数进行内存操作，s 在这里代表了 ArrayList 的 size。当我们调用 add 函数的时候，函数在实现的过程中到底发生了什么呢？我们来看一个例子。</p>
+<p>假设 elementData 里面存放着以下元素：<br>（图八）</p>
+<p>如果我们调用了 add(1, 4) 函数，也就是在 index 为 1 的地方插入 4 这个元素，在 add 的函数中则会执行 System.arraycopy(elementData, 1, elementData, 2, 6 - 1) 语句，它的意思是将从 elementData 数组 index 为 1 的地址开始，复制往后的 5 个元素到 elementData 数组 index 为 2 的地址位置，如下图所示：<br>（图九）</p>
+<p>红色的部分代表着执行完 System.arraycopy 函数的结果，最后执行 elementData[1] = 4; 这条语句：<br>（图十）</p>
+<p>因为这里涉及到了每个元素的复制，平均下来的时间复杂度相当于 O(n)。</p>
+<h3 id="2-remove-int-index-函数源码"><a href="#2-remove-int-index-函数源码" class="headerlink" title="2.remove(int index) 函数源码"></a>2.remove(int index) 函数源码</h3><p>同理，我们来看看 remove(int index) 这个函数的源码。（点击这里查看源代码）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    fastRemove(es, index);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fastRemove</span><span class="params">(Object[] es, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    System.arraycopy(es, i + <span class="number">1</span>, es, i, newSize - i);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 newSize 是指原来 elementData 的 size - 1，当我们调用 remove(1) 会发生什么呢？我们还是以下面的例子来解释。</p>
+<p>（图十一）</p>
+<p>如果我们调用了 remove(1) 函数，也就是删除在 index 为 1 这个地方的元素，在 remove 的函数中则会执行 System.arraycopy(elementData, 1 + 1, elementData, 1, 2) 语句，它的意思是将从 elementData 数组 index 为 2 的地址开始，复制后面的 2 个元素到 elementData 数组 index 为 1 的地址位置，如下图所示：</p>
+<p>（图十二）</p>
+<p>因为这里同样涉及到了每个元素的复制，平均下来时间复杂度相当于 O(n)。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>本文探讨了数组这个数据结构的内存模型，读取数组的时间复杂度为 O(1)，通过分析 Java Openjdk-jdk11，知道了插入和删除数组元素的时间复杂度为 O(n)。</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/">草稿</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/草稿/数据结构/">数据结构</a></li>
+          
+        
+      
+    
+      
+      
+        
+          
+            
+          
+          
+            <li>1数组内存模型</li>
+          
+        
+      
+    
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一维数组"><span class="nav-number">1.</span> <span class="nav-text">1.一维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-二维数组"><span class="nav-number">2.</span> <span class="nav-text">2.二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-多维数组"><span class="nav-number">2.1.</span> <span class="nav-text">3.多维数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-add-int-index-E-element-函数源码"><span class="nav-number">2.2.</span> <span class="nav-text">1.add(int index, E element) 函数源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-remove-int-index-函数源码"><span class="nav-number">2.3.</span> <span class="nav-text">2.remove(int index) 函数源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>
