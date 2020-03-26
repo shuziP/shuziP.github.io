@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="现在您已经熟悉了编码环境，是时候学习如何制作自己的图表了! 在本教程中，您将学习足够的Python来创建看起来很专业的折线图。然后，在接下来的练习中，您将使用您的新技能来处理真实世界的数据集。 Set up the notebook我们首先设置编码环境。(这段代码是隐藏的，但是你可以点击下面的“代码”按钮来解除隐藏。) 123456import pandas as pdpd.plotting.re">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/草稿/[Seaborn]2line-charts.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="现在您已经熟悉了编码环境，是时候学习如何制作自己的图表了! 在本教程中，您将学习足够的Python来创建看起来很专业的折线图。然后，在接下来的练习中，您将使用您的新技能来处理真实世界的数据集。 Set up the notebook我们首先设置编码环境。(这段代码是隐藏的，但是你可以点击下面的“代码”按钮来解除隐藏。) 123456import pandas as pdpd.plotting.re">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/png/2_1.png">
+<meta property="og:updated_time" content="2020-03-26T09:00:58.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="现在您已经熟悉了编码环境，是时候学习如何制作自己的图表了! 在本教程中，您将学习足够的Python来创建看起来很专业的折线图。然后，在接下来的练习中，您将使用您的新技能来处理真实世界的数据集。 Set up the notebook我们首先设置编码环境。(这段代码是隐藏的，但是你可以点击下面的“代码”按钮来解除隐藏。) 123456import pandas as pdpd.plotting.re">
+<meta name="twitter:image" content="https://github.com/png/2_1.png">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/草稿/[Seaborn]2line-charts">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <p>现在您已经熟悉了编码环境，是时候学习如何制作自己的图表了!</p>
+<p>在本教程中，您将学习足够的Python来创建看起来很专业的折线图。然后，在接下来的练习中，您将使用您的新技能来处理真实世界的数据集。</p>
+<h2 id="Set-up-the-notebook"><a href="#Set-up-the-notebook" class="headerlink" title="Set up the notebook"></a>Set up the notebook</h2><p>我们首先设置编码环境。(这段代码是隐藏的，但是你可以点击下面的“代码”按钮来解除隐藏。)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">pd.plotting.register_matplotlib_converters()</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">print(<span class="string">"Setup Complete"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>本教程的数据集跟踪音乐流媒体服务Spotify上的全球每日流。我们关注2017年和2018年的五首流行歌曲:</p>
+<ul>
+<li>“Shape of You”, by Ed Sheeran (link)</li>
+<li>“Despacito”, by Luis Fonzi (link)</li>
+<li>“Something Just Like This”, by The Chainsmokers and Coldplay (link)</li>
+<li>“HUMBLE.”, by Kendrick Lamar (link)</li>
+<li>“Unforgettable”, by French Montana (link)</li>
+</ul>
+<p><img src="/png/2_1.png" alt="png"></p>
+<p>请注意，第一个出现的日期是2017年1月6日，与Ed Sheeran的《the Shape of You》的发行日期相对应。通过这个表格，你可以看到，《Shape of You》在全球范围内的播放量在发行当天达到了12287078次。请注意，其他歌曲在第一行中缺少值，因为它们直到稍后才发布!</p>
+<h2 id="Load-the-data"><a href="#Load-the-data" class="headerlink" title="Load the data"></a>Load the data</h2><p>正如您在前一篇教程中所了解的，我们使用 加载数据集的pd.read_csv 命令。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Path of the file to read</span></span><br><span class="line">spotify_filepath = <span class="string">"../input/spotify.csv"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read the file into a variable spotify_data</span></span><br><span class="line">spotify_data = pd.read_csv(spotify_filepath, index_col=<span class="string">"Date"</span>, parse_dates=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行上述两行代码的最终结果是，我们现在可以通过使用spotify_data访问数据集。</p>
+<h2 id="Examine-the-data"><a href="#Examine-the-data" class="headerlink" title="Examine the data"></a>Examine the data</h2><p>我们可以使用您在前一篇教程中了解的head命令来打印数据集的前五行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Print the first 5 rows of the data</span></span><br><span class="line">spotify_data.head()</span><br></pre></td></tr></table></figure>
+
+<p>现在检查前五行是否与上面数据集的图像一致(从我们看到它在Excel中的样子时开始)。</p>
+<p>空条目将显示为NaN，这是“Not a Number”的缩写。</p>
+<p>我们还可以通过做一个小修改(其中.head()变成.tail())来查看数据的最后五行:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Print the last five rows of the data</span></span><br><span class="line">spotify_data.tail()</span><br></pre></td></tr></table></figure>
+
+<p>值得庆幸的是，一切看起来都很正常，每首歌每天都有数百万的全球流量，我们可以继续绘制数据!</p>
+<h2 id="Plot-the-data"><a href="#Plot-the-data" class="headerlink" title="Plot the data"></a>Plot the data</h2><p>现在数据集已经加载到记事本中了，我们只需要一行代码就可以制作一个折线图了!</p>
+<p>如你所见，代码行相对较短，有两个主要组成部分:</p>
+<ul>
+<li>sns。lineplot告诉笔记本我们想要创建一个折线图。<ul>
+<li>您在本课程中学习的每个命令都将从sns开始，这表明该命令来自于seaborn包。例如，我们使用sns。制作折线图。很快，你就会知道我们使用sns。barplot和社交。热图制作条形图和热图，分别。</li>
+</ul>
+</li>
+<li>data=spotify_data选择将用于创建图表的数据。</li>
+</ul>
+<p>请注意，在创建折线图时，您将始终使用相同的格式，而新数据集更改的惟一内容是数据集的名称。因此，如果您使用的是另一个名为financial_data的数据集，例如，代码行如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the width and height of the figure</span></span><br><span class="line">plt.figure(figsize=(<span class="number">14</span>,<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add title</span></span><br><span class="line">plt.title(<span class="string">"Daily Global Streams of Popular Songs in 2017-2018"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Line chart showing daily global streams of each song </span></span><br><span class="line">sns.lineplot(data=spotify_data)</span><br></pre></td></tr></table></figure>
+
+<p>第一行代码将图形的大小设置为14英寸(宽)×6英寸(高)。要设置任何图形的大小，只需复制显示的代码行即可。然后，如果希望使用自定义大小，请将提供的值14和6更改为所需的宽度和高度。</p>
+<p>第二行代码设置图形的标题。注意标题必须总是用引号括起来(“…”)!</p>
+<h2 id="Plot-a-subset-of-the-data"><a href="#Plot-a-subset-of-the-data" class="headerlink" title="Plot a subset of the data"></a>Plot a subset of the data</h2><p>到目前为止，您已经了解了如何为数据集中的每一列绘制直线。在本节中，您将了解如何绘制列的子集。</p>
+<p>我们将从打印所有列的名称开始。这是通过一行代码完成的，只需替换数据集的名称(在本例中为spotify_data)，就可以对任何数据集进行调整。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(spotify_data.columns)</span><br></pre></td></tr></table></figure>
+
+<p>在下一个代码单元格中，我们将绘制与数据集的前两列对应的行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the width and height of the figure</span></span><br><span class="line">plt.figure(figsize=(<span class="number">14</span>,<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add title</span></span><br><span class="line">plt.title(<span class="string">"Daily Global Streams of Popular Songs in 2017-2018"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Line chart showing daily global streams of 'Shape of You'</span></span><br><span class="line">sns.lineplot(data=spotify_data[<span class="string">'Shape of You'</span>], label=<span class="string">"Shape of You"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Line chart showing daily global streams of 'Despacito'</span></span><br><span class="line">sns.lineplot(data=spotify_data[<span class="string">'Despacito'</span>], label=<span class="string">"Despacito"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add label for horizontal axis</span></span><br><span class="line">plt.xlabel(<span class="string">"Date"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>前两行代码设置了图的标题和大小(应该看起来非常熟悉!)</p>
+<p>接下来的两行分别向折线图中添加一条线。例如，考虑第一个，它添加了“你的形状”的线条:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Line chart showing daily global streams of 'Shape of You'</span></span><br><span class="line">sns.lineplot(data=spotify_data[<span class="string">'Shape of You'</span>], label=<span class="string">"Shape of You"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这行代码看起来很像我们在数据集中绘制每一行时使用的代码，但它有几个关键的区别:</p>
+<ul>
+<li>我们没有设置data=spotify_data，而是设置data=spotify_data[‘Shape of You’]。通常，为了只绘制单个列，我们使用这种格式，将列的名称放在单引号中，并将其括在方括号中。(为了确保正确指定了列名，可以使用上面学到的命令打印所有列名的列表。)</li>
+<li>我们还添加了label=”Shape of You”，使线条出现在图例中，并设置相应的label。</li>
+</ul>
+<p>最后一行代码修改水平轴(或x轴)的标签，所需的标签放在引号中(“…”)。</p>
+<h2 id="What’s-next"><a href="#What’s-next" class="headerlink" title="What’s next?"></a>What’s next?</h2><p>把你的新技能用在编码练习中!</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-up-the-notebook"><span class="nav-number">1.</span> <span class="nav-text">Set up the notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-the-data"><span class="nav-number">2.</span> <span class="nav-text">Load the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Examine-the-data"><span class="nav-number">3.</span> <span class="nav-text">Examine the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plot-the-data"><span class="nav-number">4.</span> <span class="nav-text">Plot the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Plot-a-subset-of-the-data"><span class="nav-number">5.</span> <span class="nav-text">Plot a subset of the data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-next"><span class="nav-number">6.</span> <span class="nav-text">What’s next?</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>
