@@ -50,27 +50,27 @@
     tabs: true,
     motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Kopieren',
-      copy_success: 'Kopiert',
-      copy_failure: 'Kopieren fehlgeschlagen'
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
     }
   };
 </script>
 
-  <meta name="description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.register_matplot">
+  <meta name="description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在国际知名游戏评论网站IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.regist">
 <meta property="og:type" content="website">
 <meta property="og:title" content="shuzip">
 <meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/analysis/Game_consoles_and_game_types/index.html">
 <meta property="og:site_name" content="shuzip">
-<meta property="og:description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.register_matplot">
+<meta property="og:description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在国际知名游戏评论网站IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.regist">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/Oh06Fu1.png">
 <meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/Game_consoles_and_game_types/output_14_1.png">
 <meta property="og:image" content="https://github.com/shuziP/shuzip.github.io.git/analysis/Game_consoles_and_game_types/output_17_1.png">
-<meta property="og:updated_time" content="2020-04-05T15:50:00.000Z">
+<meta property="og:updated_time" content="2020-04-05T18:34:56.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shuzip">
-<meta name="twitter:description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.register_matplot">
+<meta name="twitter:description" content="基于seaborn的主机与游戏种类平均分可视化使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据 数据集在国际知名游戏评论网站IGN Game Reviews可以找到各大平台的新游戏与游戏评价  这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。 123456import pandas as pdpd.plotting.regist">
 <meta name="twitter:image" content="https://i.imgur.com/Oh06Fu1.png">
   <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/analysis/Game_consoles_and_game_types/">
 
@@ -139,7 +139,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -294,7 +294,7 @@
       <div class="post-body">
         
           <h2 id="基于seaborn的主机与游戏种类平均分可视化"><a href="#基于seaborn的主机与游戏种类平均分可视化" class="headerlink" title="基于seaborn的主机与游戏种类平均分可视化"></a>基于seaborn的主机与游戏种类平均分可视化</h2><p>使用条形图（bar charts ）和热度图（heatmaps ）来理解平台与游戏种类数据</p>
-<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>在<a href="https://www.ign.com/reviews/games">IGN Game Reviews</a>可以找到各大平台的新游戏与游戏评价</p>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>在国际知名游戏评论网站<a href="https://www.ign.com/reviews/games">IGN Game Reviews</a>可以找到各大平台的新游戏与游戏评价</p>
 <p><img src="https://i.imgur.com/Oh06Fu1.png" alt="ex2_ign"></p>
 <p>这个数据集记录了各大平台与游戏种类的平均分，分数是从0到10之间的一个数值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">pd.plotting.register_matplotlib_converters()</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">print(<span class="string">"Setup Complete"</span>)</span><br></pre></td></tr></table></figure>
@@ -490,10 +490,10 @@ Name: PlayStation Vita, dtype: bool</code></pre><ul>
     <div class="sidebar-inner">
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -511,7 +511,7 @@ Name: PlayStation Vita, dtype: bool</code></pre><ul>
           <a href="/archives">
         
           <span class="site-state-item-count">14</span>
-          <span class="site-state-item-name">Artikel</span>
+          <span class="site-state-item-name">posts</span>
         </a>
       </div>
     
@@ -532,7 +532,7 @@ Name: PlayStation Vita, dtype: bool</code></pre><ul>
           
         
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">Kategorien</span>
+        <span class="site-state-item-name">categories</span>
         </a>
       </div>
     
