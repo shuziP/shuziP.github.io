@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="ANZ（澳新银行）数据分析项目任务1.探索性数据分析分割数据集并得出独特的见解，包括交易量的可视化和评估任何异常值的影响。通过学习此模块，您将获得一些实用技能：数据分割数据可视化将您的工作与ANZ团队创建的真实模型解决方案进行比较。 将下面的ANZ交易数据集加载到分析工具（Excel，R，SAS，Tableau或类似工具）中 首先进行一些基本检查-是否存在数据问题？ 是否需要清除数据？ 收集有关数">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/analysis/ANZ_Program/index.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="ANZ（澳新银行）数据分析项目任务1.探索性数据分析分割数据集并得出独特的见解，包括交易量的可视化和评估任何异常值的影响。通过学习此模块，您将获得一些实用技能：数据分割数据可视化将您的工作与ANZ团队创建的真实模型解决方案进行比较。 将下面的ANZ交易数据集加载到分析工具（Excel，R，SAS，Tableau或类似工具）中 首先进行一些基本检查-是否存在数据问题？ 是否需要清除数据？ 收集有关数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-08-13T23:57:27.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="ANZ（澳新银行）数据分析项目任务1.探索性数据分析分割数据集并得出独特的见解，包括交易量的可视化和评估任何异常值的影响。通过学习此模块，您将获得一些实用技能：数据分割数据可视化将您的工作与ANZ团队创建的真实模型解决方案进行比较。 将下面的ANZ交易数据集加载到分析工具（Excel，R，SAS，Tableau或类似工具）中 首先进行一些基本检查-是否存在数据问题？ 是否需要清除数据？ 收集有关数">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/analysis/ANZ_Program/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis menu-item-active">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/analysis/">ANALYSIS</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>ANZ_PROGRAM</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+          <h1 id="ANZ（澳新银行）数据分析项目"><a href="#ANZ（澳新银行）数据分析项目" class="headerlink" title="ANZ（澳新银行）数据分析项目"></a>ANZ（澳新银行）数据分析项目</h1><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><h3 id="1-探索性数据分析"><a href="#1-探索性数据分析" class="headerlink" title="1.探索性数据分析"></a>1.探索性数据分析</h3><p>分割数据集并得出独特的见解，包括交易量的可视化和评估任何异常值的影响。<br>通过学习此模块，您将获得一些实用技能：<br>数据分割数据可视化<br>将您的工作与ANZ团队创建的真实模型解决方案进行比较。</p>
+<p>将下面的ANZ交易数据集加载到分析工具（Excel，R，SAS，Tableau或类似工具）中</p>
+<p>首先进行一些基本检查-是否存在数据问题？ 是否需要清除数据？</p>
+<p>收集有关数据的一些有趣的整体见解。 例如-平均交易金额是多少？ 客户平均每月要进行几笔交易？</p>
+<p>按交易日期和时间细分数据集。 可视化平均一天或一周内的交易量和支出。 考虑任何可能使分析失真的异常值的影响。</p>
+<p>面临挑战– 可以从数据集中提供的位置信息中获得哪些见解？</p>
+<p>汇总2-3张PPT，总结对ANZ管理层最有趣的发现。</p>
+<h3 id="2-构建预测模型"><a href="#2-构建预测模型" class="headerlink" title="2.构建预测模型"></a>2.构建预测模型</h3><p>使用相同的交易数据集，确定每个客户的年薪</p>
+<p>探索年薪与各种客户属性（例如年龄）之间的相关性。这些属性可以是数据中容易获得的属性（例如年龄），也可以是您自己构造或推导的属性（例如与购买行为有关的属性）。使用散点图可视化任何有趣的相关性。</p>
+<p>使用上面确定的属性构建一个简单的回归模型，以预测每个客户的年薪</p>
+<p>您的模型有多精确？澳新银行是否应使用它将客户（没有此数据的客户）划分为收入等级以进行报告？</p>
+<p>挑战：建立基于决策树的模型来预测薪水。它表现更好吗？您将如何准确测试此模型的性能？</p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>数据量：12044条数据</p>
+<p>特征描述：</p>
+<pre><code>status    状态
+card_present_flag    卡存在滞后
+bpay_biller_code    bpay帐单代码
+account    帐户
+currency    货币
+long_lat    经纬度
+txn_description    TXN说明
+merchant_id    商家编号
+merchant_code    商家代码
+first_name    名字
+balance    余额
+date    日期
+gender    性别
+age    年龄
+merchant_suburb    商家郊区
+merchant_state    商家国家
+extraction    提取日期
+amount    交易额
+transaction_id    交易编号
+country    国家
+customer_id    顾客ID
+merchant_long_lat    商家经纬度
+movement    迁移</code></pre><p>数据集理解：<br>账户余额 balance = balance - amount</p>
+<h2 id="任务一"><a href="#任务一" class="headerlink" title="任务一"></a>任务一</h2><h3 id="平均交易额分析"><a href="#平均交易额分析" class="headerlink" title="平均交易额分析"></a>平均交易额分析</h3><p>平均交易额： 187.933588</p>
+<h4 id="性别-平均交易额"><a href="#性别-平均交易额" class="headerlink" title="性别 平均交易额"></a>性别 平均交易额</h4><p>。。。</p>
+<h4 id="年龄分箱-平均交易额"><a href="#年龄分箱-平均交易额" class="headerlink" title="年龄分箱 平均交易额"></a>年龄分箱 平均交易额</h4><p>。。。</p>
+<h4 id="txn-下的平均交易额"><a href="#txn-下的平均交易额" class="headerlink" title="txn_下的平均交易额"></a>txn_下的平均交易额</h4><p>。。。</p>
+<h4 id="地区-平均交易额"><a href="#地区-平均交易额" class="headerlink" title="地区 平均交易额"></a>地区 平均交易额</h4><p>。。。</p>
+<h3 id="客户平均每月要进行交易"><a href="#客户平均每月要进行交易" class="headerlink" title="客户平均每月要进行交易"></a>客户平均每月要进行交易</h3><p>。。。</p>
+<h3 id="对比总结"><a href="#对比总结" class="headerlink" title="对比总结"></a>对比总结</h3><p>与ANZ对比自己的工作，我的不足主要有以下内容：</p>
+<h2 id="任务二"><a href="#任务二" class="headerlink" title="任务二"></a>任务二</h2><h3 id="构建回归模型"><a href="#构建回归模型" class="headerlink" title="构建回归模型"></a>构建回归模型</h3><p>1 按用户分组构建收入label<br>2 特征工程 preprocessing.LabelEncoder()<br>3 分割数据集<br>4 构建回归模型 linear_model.LinearRegression()</p>
+<h3 id="构建决策树模型"><a href="#构建决策树模型" class="headerlink" title="构建决策树模型"></a>构建决策树模型</h3><p>1 特征工程 preprocessing.LabelEncoder()<br>2 分割数据集<br>3 构建回归模型 xgb.XGBRegressor()</p>
+<h3 id="对比总结-1"><a href="#对比总结-1" class="headerlink" title="对比总结"></a>对比总结</h3><p>与ANZ对比自己的工作，我的优点如下：<br>使用了准确率较高的模型，有利于提高精准度。</p>
+<p>我的不足主要有以下内容：</p>
+<p>遇到的问题：构建监督学习时发现没有月收入这一选项，没有能够理解为什么没有label，无法构建一个回归模型来预测工资。<br>经过对比ANZ的方案，构建工资的方法是<br>用户分组<br>若出现balance增长的情况，则该笔交易视为工资（收入），构建一个用户的工资作为label构建一个新的数据集然后再构建预测模型。</p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+      
+      
+        
+          
+            
+          
+          
+            <li><a href="/analysis/">ANALYSIS</a></li>
+          
+        
+      
+    
+      
+      
+        
+          <li>ANZ_PROGRAM</li>
+        
+      
+    
+      
+      
+    
+  </ul>
+
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ANZ（澳新银行）数据分析项目"><span class="nav-number">1.</span> <span class="nav-text">ANZ（澳新银行）数据分析项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务"><span class="nav-number">1.1.</span> <span class="nav-text">任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-探索性数据分析"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.探索性数据分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-构建预测模型"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.构建预测模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集"><span class="nav-number">1.2.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务一"><span class="nav-number">1.3.</span> <span class="nav-text">任务一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平均交易额分析"><span class="nav-number">1.3.1.</span> <span class="nav-text">平均交易额分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#性别-平均交易额"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">性别 平均交易额</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#年龄分箱-平均交易额"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">年龄分箱 平均交易额</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#txn-下的平均交易额"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">txn_下的平均交易额</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#地区-平均交易额"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">地区 平均交易额</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户平均每月要进行交易"><span class="nav-number">1.3.2.</span> <span class="nav-text">客户平均每月要进行交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比总结"><span class="nav-number">1.3.3.</span> <span class="nav-text">对比总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#任务二"><span class="nav-number">1.4.</span> <span class="nav-text">任务二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建回归模型"><span class="nav-number">1.4.1.</span> <span class="nav-text">构建回归模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建决策树模型"><span class="nav-number">1.4.2.</span> <span class="nav-text">构建决策树模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比总结-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">对比总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+    <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

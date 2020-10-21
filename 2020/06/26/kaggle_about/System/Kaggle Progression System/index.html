@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: ''
+    },
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    }
+  };
+</script>
+
+  <meta name="description" content="Kaggle Progression System Kaggle的晋升系统使用性能等级来追踪您作为Kaggle上的数据科学家的成长。在这个过程中，你将为你的成就赢得奖牌，并在直播排行榜上争夺数据科学的荣誉。 Categories of Expertise 级数系统是围绕数据科学专业知识的四个Kaggle类别设计的:竞赛、内核、数据集和讨论。通过性能等级的提升是在每个专业领域内独立完成的。表现层在每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shuzip">
+<meta property="og:url" content="https://github.com/shuziP/shuzip.github.io.git/2020/06/26/kaggle_about/System/Kaggle Progression System/index.html">
+<meta property="og:site_name" content="shuzip">
+<meta property="og:description" content="Kaggle Progression System Kaggle的晋升系统使用性能等级来追踪您作为Kaggle上的数据科学家的成长。在这个过程中，你将为你的成就赢得奖牌，并在直播排行榜上争夺数据科学的荣誉。 Categories of Expertise 级数系统是围绕数据科学专业知识的四个Kaggle类别设计的:竞赛、内核、数据集和讨论。通过性能等级的提升是在每个专业领域内独立完成的。表现层在每">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-16T11:11:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shuzip">
+<meta name="twitter:description" content="Kaggle Progression System Kaggle的晋升系统使用性能等级来追踪您作为Kaggle上的数据科学家的成长。在这个过程中，你将为你的成就赢得奖牌，并在直播排行榜上争夺数据科学的荣誉。 Categories of Expertise 级数系统是围绕数据科学专业知识的四个Kaggle类别设计的:竞赛、内核、数据集和讨论。通过性能等级的提升是在每个专业领域内独立完成的。表现层在每">
+  <link rel="canonical" href="https://github.com/shuziP/shuzip.github.io.git/2020/06/26/kaggle_about/System/Kaggle Progression System/">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | shuzip</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shuzip</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    <a href="/HOME/" rel="section">HOME</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-代码code">
+
+    <a href="/code/" rel="section">代码code</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-音乐music">
+
+    <a href="/music/" rel="section">音乐music</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-数据分析analysis">
+
+    <a href="/analysis/" rel="section">数据分析analysis</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-内容分类categories">
+
+    <a href="/categories/" rel="section">内容分类categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section">ABOUT</a>
+
+  </li>
+    </ul>
+    
+
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/shuziP/shuzip.github.io.git/2020/06/26/kaggle_about/System/Kaggle Progression System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shuzip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuzip">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Erstellt: 2020-06-26 00:40:09" itemprop="dateCreated datePublished" datetime="2020-06-26T00:40:09+08:00">2020-06-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Bearbeitet am</span>
+                
+                <time title="Geändert am: 2020-02-16 19:11:37" itemprop="dateModified" datetime="2020-02-16T19:11:37+08:00">2020-02-16</time>
+              </span>
+            
+          
+
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Kaggle Progression System</p>
+<p>Kaggle的晋升系统使用性能等级来追踪您作为Kaggle上的数据科学家的成长。在这个过程中，你将为你的成就赢得奖牌，并在直播排行榜上争夺数据科学的荣誉。</p>
+<p>Categories of Expertise</p>
+<p>级数系统是围绕数据科学专业知识的四个Kaggle类别设计的:竞赛、内核、数据集和讨论。通过性能等级的提升是在每个专业领域内独立完成的。<br>表现层<br>在每一类专家中，可以根据工作的质量和数量分为五个等级:新手、贡献者、专家、大师和特级大师。<br>例如，你可以是竞赛专家、内核贡献者、数据集专家和讨论专家:</p>
+<p>The highest tier you have achieved in any of the categories of expertise will be displayed on your profile and under your avatar across the site. Tiers are awarded on the basis of medals earned in each category.</p>
+<p>Novice<br>You’ve joined the community.<br>Register!</p>
+<p>Contributor<br>You’ve completed your profile, engaged with the community, and fully explored Kaggle’s platform.<br>Add your bio<br>Add your location<br>Add your occupation<br>Add your organization<br>SMS verify your account<br>Run 1 script<br>Make 1 competition submission<br>Make 1 comment<br>Cast 1 upvote</p>
+<p>Expert<br>You’ve completed a significant body of work on Kaggle in one or more categories of expertise. Once you’ve reached the expert tier for a category, you will be entered into the site wide Kaggle Ranking for that category.<br>Competitions<br>Datasets<br>Kernels<br>Discussions<br>bronze 2 bronze medals<br>bronze 3 bronze medals<br>bronze 5 bronze medals<br>bronze 50 bronze medals</p>
+<p>Master<br>You’ve demonstrated excellence in one or more categories of expertise on Kaggle to reach this prestigious tier. Masters in the Competitions category are eligible for exclusive Master-Only competitions.<br>Competitions<br>Datasets<br>Kernels<br>Discussions<br>gold 1 gold medal<br>silver 2 silver medals<br>gold 1 gold medal<br>silver 4 silver medals<br>silver 10 silver medals<br>silver 50 silver medals<br>200 medals in total</p>
+<p>Grandmaster<br>You’ve consistently demonstrated outstanding performance in one or more categories of expertise on Kaggle to reach this pinnacle tier. You’re the best of the best.<br>Competitions<br>Datasets<br>Kernels<br>Discussions<br>gold 5 gold medals<br>Solo gold medal<br>gold 5 gold medals<br>silver 5 silver medals<br>gold 15 gold medals<br>gold 50 gold medals<br>500 medals in total<br>Medals<br>To reward your best work<br>Medals are a standardized way of recognizing and rewarding excellent pieces of work across the categories of expertise on Kaggle. Each medal is awarded for a single accomplishment: a great competition result, a popular kernel, a useful dataset or an insightful comment.</p>
+<p>Competition Medals<br>Competition medals are awarded for top competition results. The number of medals awarded per competition varies depending on the size of the competition. Note that InClass, playground, and getting started competitions do not award medals.<br>0-99 Teams<br>100-249 Teams<br>250-999 Teams<br>1000+ Teams<br> Bronze<br>Top 40%<br>Top 40%<br>Top 100<br>Top 10%<br> Silver<br>Top 20%<br>Top 20%<br>Top 50<br>Top 5%<br> Gold<br>Top 10%<br>Top 10<br>Top 10 + 0.2%*<br>Top 10 + 0.2%*</p>
+<ul>
+<li>(Top 10 + 0.2%) means that an extra gold medal will be awarded for every 500 additional teams in the competition. For example, a competition with 500 teams will award gold medals to the top 11 teams and a competition with 5000 teams will award gold medals to the top 20 teams.</li>
+</ul>
+<p>Dataset Medals<br>Dataset Medals are awarded to popular public datasets published to the site, as measured by number of upvotes. Not all upvotes count towards medals: votes by novices are excluded from medal calculation.<br> Bronze<br>5 Votes<br> Silver<br>20 Votes<br> Gold<br>50 Votes</p>
+<p>Kernel Medals<br>Kernel Medals are awarded to popular kernels, as measured by the number of upvotes a kernel receives. Not all upvotes count towards medals: self-votes, votes by novices, and votes on old posts are excluded from medal calculation.<br> Bronze<br>5 Votes<br> Silver<br>20 Votes<br> Gold<br>50 Votes</p>
+<p>Discussion Medals<br>Discussion Medals are awarded to popular topics and comments posted across the site, as measured by net votes (upvotes minus downvotes). Not all upvotes count towards medals: votes by novices and votes on old posts are excluded from medal calculation.<br> Bronze<br>1 Vote<br> Silver<br>5 Votes<br> Gold<br>10 Votes<br>Kaggle Rankings and Points<br>To show where you stand<br>Kaggle Rankings<br>The Kaggle Rankings page is a live leaderboard of the absolute best data scientists on Kaggle. Each category of expertise has its own leaderboard and point system. A data scientist’s profile will display their current rank, as well as the highest rank they have ever achieved for each category. A data scientist must be a expert tier or higher to be ranked for that category.</p>
+<p>Points<br>While tiers and medals are permanent representations of a data scientist’s achievements, points are designed to decay over time. This keeps Kaggle’s rankings contemporary and competitive. All points awarded decay in a consistent way using the formula below:</p>
+<p>e−t/500<br>In this formula, t is the number of days elapsed since the point was awarded.</p>
+<p>Competitions<br>Competition points (previously known as “Kaggle Points”) are awarded based on how well a team did in a competition, the number of members on the team, and the number of teams in the competition. Note that InClass, playground, and getting started competitions do not award points.</p>
+<p>The algorithm for competition points has not changed since the 13th of May 2015:</p>
+<p>[100000Nteammates‾‾‾‾‾‾‾‾‾√][Rank−0.75][log10(1+log10(Nteams))][e−t/500],<br>Learn more about how we designed this formula here.</p>
+<p>Datasets<br>Dataset points are awarded based on the popularity of all public datasets a Kaggler has created. Each upvote on a dataset is initially worth 1 point, and decays based on the day the vote was cast.</p>
+<p>Kernels<br>Kernel points are awarded based on the popularity of all public kernels a data scientist has created. Each upvote on a kernel is initially worth 1 point, and decays based on the day the vote was cast.</p>
+<p>Discussion<br>Discussion points are calculated as the sum of total upvotes minus the sum of total downvotes cast on a data scientist’s topics and comments on Kaggle. Decay is applied to both upvotes and downvotes based on the day the votes were cast.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2020/06/26/kaggle_about/System/tips/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2020/06/26/kaggle_about/M5/index/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">shuzip</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shuzip</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+
+  
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '500px'
+        });
+      });
+    },
+  });
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>
